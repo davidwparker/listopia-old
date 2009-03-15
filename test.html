@@ -19,9 +19,10 @@
   <div id="content">
     <div class="span-16 prepend-1 colborder">
       <form action="">
-        <div class="listName">
+        <div class="listName tagged">
           <label for="listName" class="span-4">List Name:</label>
           <input type="text" id="listName" class="title" name="listName" />
+          <div class="details hide"></div>
         </div>
         <hr />
         <ul id="items"><li></li>
@@ -65,6 +66,11 @@
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
   *to-do, *books, *tv shows, tv show episodes, *movies, magazines, comics, *people/address, addresses, CDs, cars
+  <div id="tagged" class="hide">
+    <div class="tags push-light-img">
+      <input type="text" class="text" />
+    </div>
+  </div>
   <ul id="types" class="hide">
     <li id="tt" class="bordered">
       <input type="text" class="text" name="newtext" />
@@ -92,7 +98,6 @@
     <li id="todo" class="detailed bordered">
       <b>What:</b>
       <input type="text" name="newtodo" class="text" />
-      <a class="detailslink" href="#">details</a>
       <div class="details hide">
         <div>
           <b>Due Date:</b>
@@ -100,7 +105,7 @@
         </div>
         <div>
           <b class="aligntop">Details:</b>
-          <textarea cols="16" rows="5" name="newdodetails"></textarea>
+          <textarea cols="16" rows="5" name="newdodetails" class="tall-5"></textarea>
         </div>
         <div>
           <b>Completed?</b>
@@ -115,7 +120,6 @@
     <li id="bk" class="detailed bordered">
       <b>Title or ISBN:</b>
       <input type="text" name="newbook" class="text" />
-      <a class="detailslink" href="#">details</a>
       <div class="details hide">
         <div>
           <b>Do you own this book?</b>
@@ -143,7 +147,6 @@
     <li id="mv" class="detailed bordered">
       <b>Title or ISBN:</b>
       <input type="text" name="newmovie" class="text" />
-      <a class="detailslink" href="#">details</a>
       <div class="details hide">
         <div>
           <b>Do you own this movie?</b>
@@ -169,7 +172,6 @@
     <li id="tv" class="detailed bordered">
       <b>Title or ISBN:</b>
       <input type="text" name="newtv" class="text" />
-      <a class="detailslink" href="#">details</a>
       <div class="details hide">
         <div>
           <b>Complete Series?</b>
@@ -221,7 +223,6 @@
     <li id="per" class="detailed bordered">
       <b>Name:</b>
       <input type="text" name="newperson" class="text" />
-      <a class="detailslink" href="#">details</a>
       <div class="details hide">
         <div>
           <span class="append-light-1"><strong>Phone</strong></span><a href="#" class="addone">add</a>
@@ -269,23 +270,48 @@
     </li>
   </ul>
 </div>
+<div id="removeitem" title="Remove?" class="hide">Do you permanently want to delete this item?</div>
+
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
 <script type="text/javascript">
 /* <![CDATA[ */
 (function(){
 $(document).ready(function(){
-//add the image, copy, and remove links
-var dragDropImg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
+//add the image, details, tags, copy, and remove links
+var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
+var detailslink = " <a class='detailslink' href='#'>details</a>";
 var cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>";
+var taglink = " <a class='tag' href='#'>tags</a>";
 $('#types li.bordered').each(function(){
-  $(this).prepend(dragDropImg);
+  $(this).prepend(dragdropimg);
 });
 $('#types li:not(.detailed)').each(function(){
   $(this).append(cprmlinks);
 });
-$('#types .detailslink').each(function(){
-  $(this).after(cprmlinks);
+$('#types .details').each(function(){
+  $(this).before(detailslink).before(taglink).before(cprmlinks);
+});
+$('#listName').after(taglink);
+//tag toggle (move to details?)
+$('.tag').click(function(){
+  var parent = $(this).parent();
+  var tags = parent.find('.tags');
+  if(tags.length === 0){
+    $('#tagged').children().clone().addClass('hide')
+      .insertBefore(parent.find('.details'))
+      .slideDown().removeClass('hide');
+  }else if (exists(tags)){
+    tags.slideDown().removeClass('hide');
+  }else{
+    tags.slideUp().addClass('hide');
+  }
+  return false;
+
+  function exists(jquery){
+    if (jquery.length === 1 && jquery.hasClass('hide'))
+      return true;
+  }
 });
 //toggles for details section (books/movies/etc)
 $('.detailslink').toggle(function(){
@@ -301,7 +327,6 @@ $('.revealnext').click(function(){
     $(this).next().slideUp().addClass('hide');
   }
 });
-
 //add button click events for which to clone
 $('#addButton').click(function(){
   var selected=$('#addSelect option:selected').val(), toAdd;
@@ -331,8 +356,7 @@ $('.copy').click(function(){
   parent.find('textarea').each(function(){
     $(this).text($(this).val());
   });
-  //hack fix due to jquery not cloning select value in FF
-  //this is only for single selects, not multi-selects
+  //hack fix due to jquery not cloning select value in FF (single selects, not multi-selects)
   var selects = parent.find('select :selected').val();
   var clone = parent.clone(true).addClass('hide').css({'display':''})
     .removeAttr('id').children().removeAttr('id').end().insertAfter(parent);
@@ -354,6 +378,7 @@ $('.addone').click(function(){
 });
 //remove click events
 $('.remove').click(function(){
+  $("#removeitem").clone().dialog({modal:true,resizable:false,draggable:false});
   if ($(this).parent().parent().find('li').length !== 1)
     $(this).parent().fadeOut(function(){$(this).remove();});
   else
@@ -371,6 +396,7 @@ $('#items, #items a').disableSelection();
 //TODO: add stars for ratings
 //TODO: CSS for calendar
 //TODO: CSS for length of 'labels'/lining up textboxes
+//TODO: background text for input tags
 //TODO: select text even while sortable
 //TODO: add couchdb!!!
 //TODO: add ajax to get ISBN info/etc from amazon
