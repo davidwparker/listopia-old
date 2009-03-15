@@ -21,7 +21,7 @@
       <form action="">
         <div class="listName tagged">
           <label for="listName" class="span-4">List Name:</label>
-          <input type="text" id="listName" class="title" name="listName" />
+          <input type="text" id="listName" name="listName" class="title"/>
           <div class="details hide"></div>
         </div>
         <hr />
@@ -65,9 +65,10 @@
   list ideas:
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
-  *to-do, *books, *tv shows, tv show episodes, *movies, magazines, comics, *people/address, addresses, CDs, cars
+  *to-do, *books, *tv shows, tv show episodes, *movies, magazines, comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc)
   <div id="tagged" class="hide">
     <div class="tags push-light-img">
+      <b>Tags:</b>
       <input type="text" class="text" />
     </div>
   </div>
@@ -278,6 +279,7 @@
 /* <![CDATA[ */
 (function(){
 $(document).ready(function(){
+/* Appending/etc */
 //add the image, details, tags, copy, and remove links
 var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
 var detailslink = " <a class='detailslink' href='#'>details</a>";
@@ -293,12 +295,14 @@ $('#types .details').each(function(){
   $(this).before(detailslink).before(taglink).before(cprmlinks);
 });
 $('#listName').after(taglink);
+
+/* Click Events */
 //tag toggle (move to details?)
 $('.tag').click(function(){
   var parent = $(this).parent();
   var tags = parent.find('.tags');
   if(tags.length === 0){
-    $('#tagged').children().clone().addClass('hide')
+    $('#tagged').children().clone(true).addClass('hide')
       .insertBefore(parent.find('.details'))
       .slideDown().removeClass('hide');
   }else if (exists(tags)){
@@ -307,7 +311,6 @@ $('.tag').click(function(){
     tags.slideUp().addClass('hide');
   }
   return false;
-
   function exists(jquery){
     if (jquery.length === 1 && jquery.hasClass('hide'))
       return true;
@@ -357,8 +360,8 @@ $('.copy').click(function(){
     $(this).text($(this).val());
   });
   //hack fix due to jquery not cloning select value in FF (single selects, not multi-selects)
-  var selects = parent.find('select :selected').val();
-  var clone = parent.clone(true).addClass('hide').css({'display':''})
+  var selects = parent.find('select :selected').val(),
+    clone = parent.clone(true).addClass('hide').css({'display':''})
     .removeAttr('id').children().removeAttr('id').end().insertAfter(parent);
   parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
     .removeAttr('id').removeClass('hasDatepicker');
@@ -378,12 +381,34 @@ $('.addone').click(function(){
 });
 //remove click events
 $('.remove').click(function(){
-  $("#removeitem").clone().dialog({modal:true,resizable:false,draggable:false});
-  if ($(this).parent().parent().find('li').length !== 1)
-    $(this).parent().fadeOut(function(){$(this).remove();});
-  else
-    $(this).parent().fadeOut(function(){$(this).html('')});
+  var parent = $(this).parent(), clone = $("#removeitem").clone(), 
+  opts = {autoOpen:false,resizable:false,draggable:false,minHeight:70,modal:true,
+    buttons:{"Delete":function(){
+      if (parent.parent().find('li').length !== 1){
+        parent.fadeOut(function(){$(this).remove();});
+        clone.dialog('close');
+      }
+      else{
+        parent.fadeOut(function(){$(this).html('')});
+        clone.dialog('close');
+      }
+    },"Oops! No thanks!":function(){clone.dialog('close');}}
+  };
+  clone.dialog(opts);
+  clone.dialog('open');
   return false;
+});
+
+/* focus/blur events */
+// add keywords
+$('div.tags input.text').val("Comma separated tags e.g.: NY, New York").focus(function(){
+  if ($(this).val() == "Comma separated tags e.g.: NY, New York"){
+    this.value = "";
+  }
+}).blur(function(){
+  if ($(this).val() == ''){
+    this.value = "Comma separated tags e.g.: NY, New York";
+  }
 });
 
 //make the items sortable and remove the blank row
@@ -392,12 +417,10 @@ $('#items, #items a').disableSelection();
 
 });
 })();
-//TODO: add remove lightbox
 //TODO: add stars for ratings
-//TODO: CSS for calendar
 //TODO: CSS for length of 'labels'/lining up textboxes
-//TODO: background text for input tags
 //TODO: select text even while sortable
+//TODO: autogrowing textarea
 //TODO: add couchdb!!!
 //TODO: add ajax to get ISBN info/etc from amazon
 //TODO: add ajax to get season list from amazon/imdb
