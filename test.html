@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Listopia</title>
+  <link rel="stylesheet" type="text/css" href="css/screen.css" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <!--[if IE]>
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" />
+  <![endif]-->
+  <!--<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.7.custom.css" />-->
+  <!-- probably not going to keep jquery custom.css  It's HUGE! -->
+</head>
+<body>
+<div id="container" class="container">
+  <div id="header" class="prepend-1">
+    <h1>Listopia</h1>
+  </div>
+  <hr />
+  <div id="content">
+    <div class="span-16 prepend-1 colborder">
+      <form action="">
+        <div class="listName">
+          <label for="listName" class="span-4">List Name:</label>
+          <input type="text" id="listName" class="title" name="listName" />
+        </div>
+        <hr />
+        <ul id="items"><li></li>
+        </ul>
+        <div>
+          <input type="submit" value="Save" />
+          <select id="addSelect">
+            <optgroup label="Predefined">
+              <option value="11">To-Do</option>
+              <option value="12">Book</option>
+              <option value="13">Movie</option>
+              <option value="14">TV Show</option>
+              <option value="15">Person</option>
+            </optgroup>
+            <optgroup label="Basic">
+              <option value="1">Text</option>
+              <option value="2">Text Area</option>
+              <option value="3">Text w/Text Area</option>
+              <option value="4">Text w/Date</option>
+              <option value="5">Text Area w/Date</option>
+              <option value="6">Text w/Text Area and Date</option>
+            </optgroup>
+          </select>
+          <input type="button" class="button" id="addButton" value="Add" />
+        </div>
+      </form>
+    </div>
+    <div class="span-6 last">
+      list of links<br />
+      <ul>
+      <li>my lists</li>
+      <li>my items (Coming soon)</li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div id="footer">
+    <a href="http://davidwparker.com">davidwparker.com</a>
+  </div>
+  list ideas:
+  to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
+  predefined things:
+  *to-do, *books, *tv shows, tv show episodes, *movies, magazines, comics, *people/address, addresses, CDs, cars
+  <ul id="types" class="hide">
+    <li id="tt" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <input type="text" class="text" name="newtext" />
+    </li>
+    <li id="tat" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <textarea cols="16" rows="5" name="newtextarea" class="tall-6"></textarea>
+    </li>
+    <li id="ttat" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <input type="text" name="newtexttextareatext" class="text" /><br />
+      <textarea cols="16" rows="5" name="newtexttextarea" class="tall-6"></textarea>
+    </li>
+    <li id="tdt" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <input type="text" name="newtextwdatedate" class="text datepicker span-3" />
+      <input type="text" name="newtextwdatetext" class="text" />
+    </li>
+    <li id="tadt" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <input type="text" name="newtextareawdatedate" class="text datepicker span-3" /><br />
+      <textarea cols="16" rows="5" name="newtextareawdatearea" class="tall-6"></textarea>
+    </li>
+    <li id="ttadt" class="bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <input type="text" name="newtexttextareadatedate" class="text datepicker span-3" />
+      <input type="text" name="newtexttextareadatetext" class="text" /><br />
+      <textarea cols="16" rows="5" name="newtexttextareadatearea" class="tall-6"></textarea>
+    </li>
+    <li id="todo" class="detailed bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <b>What:</b>
+      <input type="text" name="newtodo" class="text" />
+      <a class="detailslink" href="#">details</a>
+      <div class="details hide">
+        <div>
+          <b>Due Date:</b>
+          <input type="text" name="newdoduedate" class="text datepicker span-3" />
+        </div>
+        <div>
+          <b class="aligntop">Details:</b>
+          <textarea cols="16" rows="5" name="newdodetails"></textarea>
+        </div>
+        <div>
+          <b>Completed?</b>
+          <input type="checkbox" name="newdocomp" class="revealnext aligntop" />
+          <div class="hide">
+            <b>Completion Date:</b>
+            <input type="text" name="newcompdate" class="text datepicker span-3" />
+          </div>
+        </div>
+      </div>
+    </li>
+    <li id="bk" class="detailed bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <b>Title or ISBN:</b>
+      <input type="text" name="newbook" class="text" />
+      <a class="detailslink" href="#">details</a>
+      <div class="details hide">
+        <div>
+          <b>Do you own this book?</b>
+          <input type="checkbox" name="newbkown" class="aligntop" />
+        </div>
+        <div>
+          <b>Have you read this book?</b>
+          <input type="checkbox" name="newbkread" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add another reading</a>
+            <ul>
+              <li>
+                <b>Start Date:</b>
+                <input type="text" name="newstartdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">End Date:</b>
+                <input type="text" name="newenddate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li id="mv" class="detailed bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <b>Title or ISBN:</b>
+      <input type="text" name="newmovie" class="text" />
+      <a class="detailslink" href="#">details</a>
+      <div class="details hide">
+        <div>
+          <b>Do you own this movie?</b>
+          <input type="checkbox" name="newmvown" class="aligntop" />
+        </div>
+        <div>
+          <b>Have you seen this movie?</b>
+          <input type="checkbox" name="newmvseen" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add another viewing</a>
+            <ul>
+              <li>
+                <b>Date:</b>
+                <input type="text" name="newmvdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                Stars
+              </li>
+            </ul>
+          </div>          
+        </div>
+      </div>
+    </li>
+    <li id="tv" class="detailed bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <b>Title or ISBN:</b>
+      <input type="text" name="newtv" class="text" />
+      <a class="detailslink" href="#">details</a>
+      <div class="details hide">
+        <div>
+          <b>Complete Series?</b>
+          <input type="checkbox" name="newtvown" class="aligntop" />
+        </div>
+        or
+        <div>
+          <b>Individual Season?</b>
+          <input type="checkbox" name="newtvown" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add another season</a>
+            <ul>
+              <li>
+                <b>Season:</b>
+                <select>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+                <b class="prepend-light-1">Rating:</b>
+                Stars
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <b>Do you own this TV show?</b>
+          <input type="checkbox" name="newtvown" class="aligntop" />
+        </div>
+        <div>
+          <b>Have you seen this TV show?</b>
+          <input type="checkbox" name="newtvseen" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add another viewing</a>
+            <ul class="viewing">
+              <li>
+                <b>Date:</b>
+                <input type="text" name="newmvdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                Stars
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li id="per" class="detailed bordered">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+      <b>Name:</b>
+      <input type="text" name="newperson" class="text" />
+      <a class="detailslink" href="#">details</a>
+      <div class="details hide">
+        <div>
+          <span class="append-light-1"><strong>Phone</strong></span><a href="#" class="addone">add</a>
+          <ul>
+            <li>
+              <input type="text" name="newperphone" class="text span-5" />
+              <select class="aligntop">
+                <option>Home</option>
+                <option>Cell</option>
+                <option>Work</option>
+                <option>Home Fax</option>
+                <option>Work Fax</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="append-light-1"><strong>Email</strong></span><a href="#" class="addone">add</a>
+          <ul>
+            <li>
+              <input type="text" name="newperemail" class="text span-5" />
+              <select class="aligntop">
+                <option>Home</option>
+                <option>Work</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </li>
+        </div>
+        <div>
+          <span class="append-light-1"><strong>Address</strong></span><a href="#" class="addone">add</a>
+          <ul>
+            <li>
+              <textarea cols="16" rows="5" name="newperdetails" class="span-6 tall-4"></textarea>
+              <select class="aligntop">
+                <option>Home</option>
+                <option>Work</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(){
+$(document).ready(function(){
+//add the copy and remove links
+var cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' h.find('li:first')ref='#'>remove</a>";
+$('#types li:not(.detailed)').each(function(){
+  $(this).append(cprmlinks);
+});
+$('#types .detailslink').each(function(){
+  $(this).after(cprmlinks);
+});
+//toggles for details section (books/movies/etc)
+$('.detailslink').toggle(function(){
+  $(this).parent().find('.details').slideDown().removeClass('hide');
+}, function(){
+  $(this).parent().find('.details').slideUp().addClass('hide');
+});
+//reveal next when when checkbox checked
+$('.revealnext').click(function(){
+  if($(this).attr('checked') === true){
+    $(this).next().slideDown().removeClass('hide');
+  }else{
+    $(this).next().slideUp().addClass('hide');
+  }
+});
+
+//add button click events for which to clone
+$('#addButton').click(function(){
+  var selected=$('#addSelect option:selected').val(), toAdd;
+  switch(parseInt(selected)){
+    case 1:toAdd=$('#tt').clone(true);break;
+    case 2:toAdd=$('#tat').clone(true);break;
+    case 3:toAdd=$('#ttat').clone(true);break;
+    case 4:toAdd=$('#tdt').clone(true);break;
+    case 5:toAdd=$('#tadt').clone(true);break;
+    case 6:toAdd=$('#ttadt').clone(true);break;
+    case 11:toAdd=$('#todo').clone(true);break;
+    case 12:toAdd=$('#bk').clone(true);break;
+    case 13:toAdd=$('#mv').clone(true);break;
+    case 14:toAdd=$('#tv').clone(true);break;
+    case 15:toAdd=$('#per').clone(true);break;
+    default:toAdd=$('#tt').clone(true);
+  }
+  toAdd.addClass('hide').attr('id','').children().attr('id','').end()
+    .appendTo('#items').fadeIn().removeClass('hide').find('.hasDatepicker')
+    .attr('id','').removeClass('hasDatepicker');
+  $('.datepicker').datepicker();
+});
+//copy click events
+$('.copy').click(function(){
+  //hack fix due to jquery bug not cloning textarea value in FF
+  var parent = $(this).parent();
+  parent.find('textarea').each(function(){
+    $(this).text($(this).val());
+  });
+  parent.clone(true).addClass('hide').css({'display':''})
+    .removeAttr('id').children().removeAttr('id').end().insertAfter(parent);
+  parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
+    .removeAttr('id').removeClass('hasDatepicker');
+  $('.datepicker').datepicker();
+  return false;
+});
+//addanother click events
+$('.addanother').click(function(){
+  var parent = $(this).parent();
+  parent.clone(true).addClass('hide').removeAttr('id')
+    .children().removeAttr('id').val('').end().insertAfter(parent);
+  parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
+    .removeAttr('id').removeClass('hasDatepicker');
+  $('.datepicker').datepicker();
+  return false;
+});
+//addone click events
+$('.addone').click(function(){
+  var klass = $(this).next().attr('class');
+  $('#types .' + klass).find('li:first').clone(true).addClass('hide').removeAttr('id')
+    .children().removeAttr('id').val('').end().insertAfter($(this).next().find('li:last'))
+    .fadeIn().removeClass('hide');
+  return false;
+});
+//remove click events
+$('.remove').click(function(){
+  if ($(this).parent().parent().find('li').length !== 1)
+    $(this).parent().fadeOut(function(){$(this).remove();});
+  else
+    $(this).parent().fadeOut(function(){});
+  return false;
+});
+
+//make the items sortable and remove the blank row
+$('#items').sortable({axis:'y',cursor:'n-resize'}).find('li:first').remove();
+$('#items, #items a').disableSelection();
+
+});
+})();
+//TODO: fix cloning drop down boxes
+//TODO: fix deletion of last removal link (remove the link? or just add new?)
+//TODO: add remove lightbox
+//TODO: add stars for ratings
+//TODO: CSS for calendar
+//TODO: CSS for length of 'labels'
+//TODO: select text even while sortable
+//TODO: add couchdb!!!
+//TODO: add ajax to get ISBN info/etc from amazon
+//TODO: add ajax to get season list from amazon/imdb
+/* ]]> */
+</script>
+</body>
+</html>
