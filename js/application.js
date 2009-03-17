@@ -71,6 +71,9 @@ $('#addButton').click(function(){
     .appendTo('#items').fadeIn().removeClass('hide').find('.hasDatepicker')
     .attr('id','').removeClass('hasDatepicker');
   $('.datepicker').datepicker();
+  if($('#items li').length > 1 && $('.saveAddBar').length === 1){
+    $('.saveAddBar').clone(true).insertBefore($('#items'));
+  }
 });
 //copy click events
 $('.copy').click(function(){
@@ -105,7 +108,11 @@ $('.remove').click(function(){
   opts = {autoOpen:false,resizable:false,draggable:false,minHeight:70,modal:true,
     buttons:{"Delete":function(){
       if (parent.parent().find('li').length !== 1){
-        parent.fadeOut(function(){$(this).remove();});
+        parent.fadeOut(function(){
+          $(this).remove();
+          if ($('#items li').length === 1 && $('.saveAddBar').length === 2)
+            $('.saveAddBar:first').remove();
+        });
         clone.dialog('close');
       }
       else{
@@ -132,8 +139,9 @@ $('div.tags input.text').val("Comma separated tags e.g.: NY, New York").focus(fu
 });
 
 //make the items sortable and remove the blank row
-$('#items').sortable({axis:'y',cursor:'n-resize'}).find('li:first').remove();
+$('#items').sortable({axis:'y',cursor:'n-resize'});
 $('#items, #items a').disableSelection();
+
 
 //star ratings
 //$('.rating').rating({maxvalue:5, increment:.5});
