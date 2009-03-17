@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Listopia</title>
-  <link rel="stylesheet" type="text/css" href="css/screen.css" />
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/screen.css" />
   <!--[if IE]>
     <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" />
   <![endif]-->
@@ -130,7 +130,7 @@
           <b>Have you read this book?</b>
           <input type="checkbox" name="newbkread" class="revealnext aligntop" />
           <div class="hide">
-            <a class="addone push-light-4" href="#">add another reading</a>
+            <a class="addone push-light-4" href="#">add reading</a>
             <ul class="bkreading">
               <li>
                 <b>Start Date:</b>
@@ -138,7 +138,18 @@
                 <b class="prepend-light-1">End Date:</b>
                 <input type="text" name="newenddate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
-                Stars
+                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
               </li>
             </ul>
           </div>
@@ -157,13 +168,24 @@
           <b>Have you seen this movie?</b>
           <input type="checkbox" name="newmvseen" class="revealnext aligntop" />
           <div class="hide">
-            <a class="addone push-light-4" href="#">add another viewing</a>
+            <a class="addone push-light-4" href="#">add viewing</a>
             <ul class="mvviewing">
               <li>
                 <b>Date:</b>
                 <input type="text" name="newmvdate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
-                Stars
+                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
               </li>
             </ul>
           </div>          
@@ -183,7 +205,7 @@
           <b>Individual Season?</b>
           <input type="checkbox" name="newtvown" class="revealnext aligntop" />
           <div class="hide">
-            <a class="addone push-light-4" href="#">add another season</a>
+            <a class="addone push-light-4" href="#">add season</a>
             <ul class="tvseason">
               <li>
                 <b>Season:</b>
@@ -193,7 +215,18 @@
                   <option>3</option>
                 </select>
                 <b class="prepend-light-1">Rating:</b>
-                Stars
+                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
               </li>
             </ul>
           </div>
@@ -206,7 +239,7 @@
           <b>Have you seen this TV show?</b>
           <input type="checkbox" name="newtvseen" class="revealnext aligntop" />
           <div class="hide">
-            <a class="addone push-light-4" href="#">add another viewing</a>
+            <a class="addone push-light-4" href="#">add viewing</a>
             <ul class="tvviewing">
               <li>
                 <b>Start Date:</b>
@@ -214,7 +247,18 @@
                 <b class="prepend-light-1">End Date:</b>
                 <input type="text" name="newtvenddate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
-                Stars
+                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
               </li>
             </ul>
           </div>
@@ -267,164 +311,39 @@
             </li>
           </ul>
         </div>
+        <div>
+          <span class="append-light-1"><strong>Instant Messenger</strong></span><a href="#" class="addone">add</a>
+          <ul class="instantmess">
+            <li>
+              <input type="text" name="newinstantmess" class="text span-5" />
+              <select class="aligntop">
+                <option>AIM</option>
+                <option>GTalk</option>
+                <option>MSN</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="append-light-1"><strong>Online Presence</strong></span><a href="#" class="addone">add</a>
+          <ul class="onlinepresence">
+            <li>
+              <input type="text" name="newonlinepresence" class="text span-5" />
+              <select class="aligntop">
+                <option>Facebook</option>
+                <option>MySpace</option>
+                <option>LinkedIn</option>
+              </select>
+            </li>
+          </ul>
+        </div>
       </div>
     </li>
   </ul>
 </div>
 <div id="removeitem" title="Remove?" class="hide">Do you permanently want to delete this item?</div>
-
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
-<script type="text/javascript">
-/* <![CDATA[ */
-(function(){
-$(document).ready(function(){
-/* Appending/etc */
-//add the image, details, tags, copy, and remove links
-var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
-var detailslink = " <a class='detailslink' href='#'>details</a>";
-var cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>";
-var taglink = " <a class='tag' href='#'>tags</a>";
-$('#types li.bordered').each(function(){
-  $(this).prepend(dragdropimg);
-});
-$('#types li:not(.detailed)').each(function(){
-  $(this).append(cprmlinks);
-});
-$('#types .details').each(function(){
-  $(this).before(detailslink).before(taglink).before(cprmlinks);
-});
-$('#listName').after(taglink);
-
-/* Click Events */
-//tag toggle (move to details?)
-$('.tag').click(function(){
-  var parent = $(this).parent();
-  var tags = parent.find('.tags');
-  if(tags.length === 0){
-    $('#tagged').children().clone(true).addClass('hide')
-      .insertBefore(parent.find('.details'))
-      .slideDown().removeClass('hide');
-  }else if (exists(tags)){
-    tags.slideDown().removeClass('hide');
-  }else{
-    tags.slideUp().addClass('hide');
-  }
-  return false;
-  function exists(jquery){
-    if (jquery.length === 1 && jquery.hasClass('hide'))
-      return true;
-  }
-});
-//toggles for details section (books/movies/etc)
-$('.detailslink').toggle(function(){
-  $(this).parent().find('.details').slideDown().removeClass('hide');
-}, function(){
-  $(this).parent().find('.details').slideUp().addClass('hide');
-});
-//reveal next when when checkbox checked
-$('.revealnext').click(function(){
-  if($(this).attr('checked') === true){
-    $(this).next().slideDown().removeClass('hide');
-  }else{
-    $(this).next().slideUp().addClass('hide');
-  }
-});
-//add button click events for which to clone
-$('#addButton').click(function(){
-  var selected=$('#addSelect option:selected').val(), toAdd;
-  switch(parseInt(selected)){
-    case 1:toAdd=$('#tt').clone(true);break;
-    case 2:toAdd=$('#tat').clone(true);break;
-    case 3:toAdd=$('#ttat').clone(true);break;
-    case 4:toAdd=$('#tdt').clone(true);break;
-    case 5:toAdd=$('#tadt').clone(true);break;
-    case 6:toAdd=$('#ttadt').clone(true);break;
-    case 11:toAdd=$('#todo').clone(true);break;
-    case 12:toAdd=$('#bk').clone(true);break;
-    case 13:toAdd=$('#mv').clone(true);break;
-    case 14:toAdd=$('#tv').clone(true);break;
-    case 15:toAdd=$('#per').clone(true);break;
-    default:toAdd=$('#tt').clone(true);
-  }
-  toAdd.addClass('hide').attr('id','').children().attr('id','').end()
-    .appendTo('#items').fadeIn().removeClass('hide').find('.hasDatepicker')
-    .attr('id','').removeClass('hasDatepicker');
-  $('.datepicker').datepicker();
-});
-//copy click events
-$('.copy').click(function(){
-  //hack fix due to jquery bug not cloning textarea value in FF
-  var parent = $(this).parent();
-  parent.find('textarea').each(function(){
-    $(this).text($(this).val());
-  });
-  //hack fix due to jquery not cloning select value in FF (single selects, not multi-selects)
-  var selects = parent.find('select :selected').val(),
-    clone = parent.clone(true).addClass('hide').css({'display':''})
-    .removeAttr('id').children().removeAttr('id').end().insertAfter(parent);
-  parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
-    .removeAttr('id').removeClass('hasDatepicker');
-  $('.datepicker').datepicker();
-  clone.find('select').val(selects);
-  return false;
-});
-//addone click events
-$('.addone').click(function(){
-  var klass = $(this).next().attr('class');
-  $('#types .' + klass).find('li:first').clone(true).addClass('hide').removeAttr('id')
-    .children().removeAttr('id').val('').end().insertAfter($(this).next().find('li:last'))
-    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
-    .removeClass('hasDatepicker');
-  $('.datepicker').datepicker();;
-  return false;
-});
-//remove click events
-$('.remove').click(function(){
-  var parent = $(this).parent(), clone = $("#removeitem").clone(), 
-  opts = {autoOpen:false,resizable:false,draggable:false,minHeight:70,modal:true,
-    buttons:{"Delete":function(){
-      if (parent.parent().find('li').length !== 1){
-        parent.fadeOut(function(){$(this).remove();});
-        clone.dialog('close');
-      }
-      else{
-        parent.fadeOut(function(){$(this).html('')});
-        clone.dialog('close');
-      }
-    },"Oops! No thanks!":function(){clone.dialog('close');}}
-  };
-  clone.dialog(opts);
-  clone.dialog('open');
-  return false;
-});
-
-/* focus/blur events */
-// add keywords
-$('div.tags input.text').val("Comma separated tags e.g.: NY, New York").focus(function(){
-  if ($(this).val() == "Comma separated tags e.g.: NY, New York"){
-    this.value = "";
-  }
-}).blur(function(){
-  if ($(this).val() == ''){
-    this.value = "Comma separated tags e.g.: NY, New York";
-  }
-});
-
-//make the items sortable and remove the blank row
-$('#items').sortable({axis:'y',cursor:'n-resize'}).find('li:first').remove();
-$('#items, #items a').disableSelection();
-
-});
-})();
-//TODO: add stars for ratings
-//TODO: CSS for length of 'labels'/lining up textboxes
-//TODO: select text even while sortable
-//TODO: autogrowing textarea
-//TODO: add couchdb!!!
-//TODO: add ajax to get ISBN info/etc from amazon
-//TODO: add ajax to get season list from amazon/imdb
-/* ]]> */
-</script>
+<script type="text/javascript" src="js/application.js"></script>
 </body>
 </html>
