@@ -72,24 +72,29 @@ $('#addButton').click(function(){
     .attr('id','').removeClass('hasDatepicker');
   $('.datepicker').datepicker();
   if($('#items li').length > 1 && $('.saveAddBar').length === 1){
-    $('.saveAddBar').clone(true).insertBefore($('#items'));
+    var selects = $('.saveAddBar select :selected').val();
+    $('.saveAddBar').clone(true).find('select').val(selects).end()
+      .insertBefore($('#items'));
   }
 });
 //copy click events
 $('.copy').click(function(){
+  var parent = $(this).parent(), selects = [];
+  //hack fix due to jquery not cloning select values
+  parent.find('select :selected').each(function(i){
+    selects[i] = $(this).val();
+  });
   //hack fix due to jquery bug not cloning textarea value in FF
-  var parent = $(this).parent();
   parent.find('textarea').each(function(){
     $(this).text($(this).val());
   });
-  //hack fix due to jquery not cloning select value in FF (single selects, not multi-selects)
-  var selects = parent.find('select :selected').val(),
-    clone = parent.clone(true).addClass('hide').css({'display':''})
-    .removeAttr('id').children().removeAttr('id').end().insertAfter(parent);
+  parent.clone(true).addClass('hide').css({'display':''})
+    .removeAttr('id').find('select').each(function(i){
+      $(this).val(selects[i]);
+    }).end().children().removeAttr('id').end().insertAfter(parent);
   parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
     .removeAttr('id').removeClass('hasDatepicker');
   $('.datepicker').datepicker();
-  clone.find('select').val(selects);
   return false;
 });
 //addone click events
