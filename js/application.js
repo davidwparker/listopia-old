@@ -19,8 +19,7 @@ $('#listName').after(taglink);
 /* Click Events */
 //tag toggle (move to details?)
 $('.tag').click(function(){
-  var parent = $(this).parent();
-  var tags = parent.find('.tags');
+  var parent = $(this).parent(), tags = parent.find('.tags');
   if(tags.length === 0){
     $('#tagged').children().clone(true).addClass('hide')
       .insertBefore(parent.find('.details'))
@@ -38,10 +37,11 @@ $('.tag').click(function(){
 });
 //toggles for details section (books/movies/etc)
 $('.detailslink').click(function(){
-  if($(this).parent().find('.details').hasClass('hide')){
-    $(this).parent().find('.details').slideDown().removeClass('hide');
+  var details = $(this).parent().find('.details');
+  if(details.hasClass('hide')){
+    details.slideDown().removeClass('hide');
   }else{
-    $(this).parent().find('.details').slideUp().addClass('hide');
+    details.slideUp().addClass('hide');
   }
   return false;
 });
@@ -70,9 +70,7 @@ $('.addButton').click(function(){
     case 15:toAdd=$('#per').clone(true);break;
     default:toAdd=$('#tt').clone(true);
   }
-  toAdd.addClass('hide').removeAttr('id').children().removeAttr('id').end().appendTo('#items')
-    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
-    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
+  toAdd.addHideNoIds().val('').end().appendTo('#items').fadeDate();
   addEvents(toAdd);
 
   if($('#items li').length > 1 && $('.saveAddBar').length === 1){
@@ -92,24 +90,19 @@ $('.copy').click(function(){
   .find('textarea').each(function(){
     $(this).text($(this).val());
   });
-  var clone = parent.clone(true)
-    .addClass('hide').css({'display':''})
-    .removeAttr('id').find('select').each(function(i){
+  var clone = parent.clone(true).css({'display':''}).addHideNoIds().end()
+    .find('select').each(function(i){
       $(this).val(selects[i]);
-    }).end().children().removeAttr('id').end();
+    }).end();
   addEvents(clone);
-  clone.insertAfter(parent)
-    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
-    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
+  clone.insertAfter(parent).fadeDate();
   return false;
 });
 //addone click events
 $('.addone').click(function(){
-  var klass = $(this).next().attr('class');
-  $('#types .' + klass).find('li:first').clone(true).addClass('hide').removeAttr('id')
-    .children().removeAttr('id').val('').end().insertAfter($(this).next().find('li:last'))
-    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
-    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
+  var next = $(this).next(), klass = next.attr('class');
+  $('#types .' + klass).find('li:first').clone(true).addHideNoIds().val('').end()
+    .insertAfter(next.find('li:last')).fadeDate();
   return false;
 });
 //remove click events
@@ -169,6 +162,15 @@ function addEvents(self){
     .find('textarea.tall-5').autoResize({minHeight:90}).end()
     .find('textarea.tall-4').autoResize({minHeight:70});
 }
+
+$.fn.fadeDate = function(){
+  return $(this).fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
+    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
+}
+$.fn.addHideNoIds = function(){
+  return $(this).addClass('hide').removeAttr('id').children().removeAttr('id');
+}
+
 });
 //TODO: add stars for ratings
 //TODO: CSS for length of 'labels'/lining up textboxes (on to-do's)
