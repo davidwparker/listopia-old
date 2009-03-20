@@ -37,22 +37,25 @@ $('.tag').click(function(){
   }
 });
 //toggles for details section (books/movies/etc)
-$('.detailslink').toggle(function(){
-  $(this).parent().find('.details').slideDown().removeClass('hide');
-}, function(){
-  $(this).parent().find('.details').slideUp().addClass('hide');
+$('.detailslink').click(function(){
+  if($(this).parent().find('.details').hasClass('hide')){
+    $(this).parent().find('.details').slideDown().removeClass('hide');
+  }else{
+    $(this).parent().find('.details').slideUp().addClass('hide');
+  }
+  return false;
 });
 //reveal next when when checkbox checked
 $('.revealnext').click(function(){
   if($(this).attr('checked') === true){
     $(this).next().slideDown().removeClass('hide');
   }else{
-    $(this).next().slideUp().addClass('hide');
+    $(this).next().slideUp().addClass('hide').children().val('');
   }
 });
 //add button click events for which to clone
-$('#addButton').click(function(){
-  var selected=$('#addSelect option:selected').val(), toAdd;
+$('.addButton').click(function(){
+  var selected=$(this).parent().find('select option:selected').val(), toAdd;
   switch(parseInt(selected)){
     case 1:toAdd=$('#tt').clone(true);break;
     case 2:toAdd=$('#tat').clone(true);break;
@@ -67,10 +70,11 @@ $('#addButton').click(function(){
     case 15:toAdd=$('#per').clone(true);break;
     default:toAdd=$('#tt').clone(true);
   }
-  toAdd.addClass('hide').attr('id','').children().attr('id','').end()
-    .appendTo('#items').fadeIn().removeClass('hide').find('.hasDatepicker')
-    .attr('id','').removeClass('hasDatepicker');
-  $('.datepicker').datepicker();
+  toAdd.addClass('hide').removeAttr('id').children().removeAttr('id').end().appendTo('#items')
+    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
+    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
+  addEvents(toAdd);
+
   if($('#items li').length > 1 && $('.saveAddBar').length === 1){
     var selects = $('.saveAddBar select :selected').val();
     $('.saveAddBar').clone(true).find('select').val(selects).end()
@@ -83,18 +87,20 @@ $('.copy').click(function(){
   //hack fix due to jquery not cloning select values
   parent.find('select :selected').each(function(i){
     selects[i] = $(this).val();
-  });
+  }).end()
   //hack fix due to jquery bug not cloning textarea value in FF
-  parent.find('textarea').each(function(){
+  .find('textarea').each(function(){
     $(this).text($(this).val());
   });
-  parent.clone(true).addClass('hide').css({'display':''})
+  var clone = parent.clone(true)
+    .addClass('hide').css({'display':''})
     .removeAttr('id').find('select').each(function(i){
       $(this).val(selects[i]);
-    }).end().children().removeAttr('id').end().insertAfter(parent);
-  parent.next().fadeIn().removeClass('hide').find('.hasDatepicker')
-    .removeAttr('id').removeClass('hasDatepicker');
-  $('.datepicker').datepicker();
+    }).end().children().removeAttr('id').end();
+  addEvents(clone);
+  clone.insertAfter(parent)
+    .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
+    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
   return false;
 });
 //addone click events
@@ -103,8 +109,7 @@ $('.addone').click(function(){
   $('#types .' + klass).find('li:first').clone(true).addClass('hide').removeAttr('id')
     .children().removeAttr('id').val('').end().insertAfter($(this).next().find('li:last'))
     .fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
-    .removeClass('hasDatepicker');
-  $('.datepicker').datepicker();;
+    .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
   return false;
 });
 //remove click events
@@ -134,31 +139,40 @@ $('.remove').click(function(){
 /* focus/blur events */
 // add keywords
 $('div.tags input.text').val("Comma separated tags e.g.: NY, New York").focus(function(){
-  if ($(this).val() == "Comma separated tags e.g.: NY, New York"){
+  if ($(this).val() === "Comma separated tags e.g.: NY, New York"){
     this.value = "";
   }
 }).blur(function(){
-  if ($(this).val() == ''){
+  if ($(this).val() === ''){
     this.value = "Comma separated tags e.g.: NY, New York";
   }
 });
 
 //make the items sortable and remove the blank row
-$('#items').sortable({axis:'y',cursor:'n-resize'});
-$('#items, #items a').disableSelection();
+//$('#items').sortable({axis:'y',cursor:'n-resize'});
+//$('#items, #items a').disableSelection();
 
 
 //star ratings
 //$('.rating').rating({maxvalue:5, increment:.5});
 //$("#stars-wrapper").stars({inputType: "select"});
 
-//autogrow textareas
-//$('textarea').autogrow();
+function addEvents(self){
+  $(self).find('.hasAutoresize').each(function(){
+    if ($(this).attr('tabindex') == -1){
+      $(this).remove();
+    }else{
+      $(this).removeClass('hasAutoresize');
+    }
+  }).end()
+    .find('textarea.tall-6').autoResize({minHeight:110}).end()
+    .find('textarea.tall-5').autoResize({minHeight:90}).end()
+    .find('textarea.tall-4').autoResize({minHeight:70});
+}
 });
 //TODO: add stars for ratings
-//TODO: CSS for length of 'labels'/lining up textboxes
+//TODO: CSS for length of 'labels'/lining up textboxes (on to-do's)
 //TODO: select text even while sortable
-//TODO: autogrowing textarea
 //TODO: add couchdb!!!
 //TODO: add ajax to get ISBN info/etc from amazon
 //TODO: add ajax to get season list from amazon/imdb
