@@ -23,11 +23,11 @@ $('.tag').click(function(){
   if(tags.length === 0){
     $('#tagged').children().clone(true).addClass('hide')
       .insertBefore(parent.find('.details'))
-      .slideDown().removeClass('hide');
+      .sdr();
   }else if (exists(tags)){
-    tags.slideDown().removeClass('hide');
+    tags.sdr();
   }else{
-    tags.slideUp().addClass('hide');
+    tags.sua();
   }
   return false;
   function exists(jquery){
@@ -39,18 +39,18 @@ $('.tag').click(function(){
 $('.detailslink').click(function(){
   var details = $(this).parent().find('.details');
   if(details.hasClass('hide')){
-    details.slideDown().removeClass('hide');
+    details.sdr();
   }else{
-    details.slideUp().addClass('hide');
+    details.sua();
   }
   return false;
 });
 //reveal next when when checkbox checked
 $('.revealnext').click(function(){
   if($(this).attr('checked') === true){
-    $(this).next().slideDown().removeClass('hide');
+    $(this).next().sdr();
   }else{
-    $(this).next().slideUp().addClass('hide').children().val('');
+    $(this).next().sua().children().val('');
   }
 });
 //add button click events for which to clone
@@ -67,7 +67,10 @@ $('.addButton').click(function(){
     case 12:toAdd=$('#bk').clone(true);break;
     case 13:toAdd=$('#mv').clone(true);break;
     case 14:toAdd=$('#tv').clone(true);break;
-    case 15:toAdd=$('#per').clone(true);break;
+    case 15:toAdd=$('#tvi').clone(true);break;
+    case 16:toAdd=$('#per').clone(true);break;
+    case 17:toAdd=$('#mg').clone(true);break;
+    case 18:toAdd=$('#co').clone(true);break;
     default:toAdd=$('#tt').clone(true);
   }
   toAdd.addHideNoIds().val('').end().appendTo('#items').fadeDate();
@@ -131,13 +134,14 @@ $('.remove').click(function(){
 
 /* focus/blur events */
 // add keywords
-$('div.tags input.text').val("Comma separated tags e.g.: NY, New York").focus(function(){
-  if ($(this).val() === "Comma separated tags e.g.: NY, New York"){
+var tagWords = "Comma separated tags e.g.: NY, New York";
+$('div.tags input.text').val(tagWords).focus(function(){
+  if ($(this).val() === tagWords){
     this.value = "";
   }
 }).blur(function(){
   if ($(this).val() === ''){
-    this.value = "Comma separated tags e.g.: NY, New York";
+    this.value = tagWords;
   }
 });
 
@@ -170,8 +174,15 @@ $.fn.fadeDate = function(){
 $.fn.addHideNoIds = function(){
   return $(this).addClass('hide').removeAttr('id').children().removeAttr('id');
 }
+$.fn.sdr = function(){
+  return $(this).slideDown().removeClass('hide');
+}
+$.fn.sua = function(){
+  return $(this).slideUp().addClass('hide');
+}
 
 });
+//TODO: option/cookie to auto expand details on selection
 //TODO: add stars for ratings
 //TODO: CSS for length of 'labels'/lining up textboxes (on to-do's)
 //TODO: select text even while sortable

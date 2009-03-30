@@ -35,7 +35,10 @@
               <option value="12">Book</option>
               <option value="13">Movie</option>
               <option value="14">TV Show</option>
-              <option value="15">Person</option>
+              <option value="15">TV Show Episode</option>
+              <option value="16">Person</option>
+              <option value="17">Magazine</option>
+              <option value="18">Comic</option>
             </optgroup>
             <optgroup label="Basic">
               <option value="1">Text</option>
@@ -65,7 +68,7 @@
   list ideas:
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
-  *to-do, *books, *tv shows, tv show episodes, *movies, magazines, comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc)
+  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc)
   <div id="tagged" class="hide">
     <div class="tags push-light-img">
       <b>Tags:</b>
@@ -198,12 +201,12 @@
       <div class="details hide">
         <div>
           <b>Complete Series?</b>
-          <input type="checkbox" name="newtvown" class="aligntop" />
+          <input type="checkbox" name="newtvseries" class="aligntop" />
         </div>
         or
         <div>
           <b>Individual Season?</b>
-          <input type="checkbox" name="newtvown" class="revealnext aligntop" />
+          <input type="checkbox" name="newtvseason" class="revealnext aligntop" />
           <div class="hide">
             <a class="addone push-light-4" href="#">add season</a>
             <ul class="tvseason">
@@ -265,12 +268,71 @@
         </div>
       </div>
     </li>
+    <li id="tvi" class="detailed bordered">
+      <b>Title:</b>
+      <input type="text" name="newtvi" class="text" />
+      <div class="details hide">
+        <div>
+          <b>Season:</b>
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          <b>Episode:</b>
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>          <b class="prepend-light-1">Rating:</b>          <select class="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div>
+          <b>Have you seen this episode?</b>
+          <input type="checkbox" name="newtviseen" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add viewing</a>
+            <ul class="tviviewing">
+              <li>
+                <b>Start Date:</b>
+                <input type="text" name="newtvistartdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">End Date:</b>
+                <input type="text" name="newtvienddate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
     <li id="per" class="detailed bordered">
       <b>Name:</b>
       <input type="text" name="newperson" class="text" />
       <div class="details hide">
         <div>
-          <span class="append-light-1"><strong>Phone</strong></span><a href="#" class="addone">add</a>
+          <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add</a>
           <ul class="phone">
             <li>
               <input type="text" name="newperphone" class="text span-5" />
@@ -286,7 +348,7 @@
           </ul>
         </div>
         <div>
-          <span class="append-light-1"><strong>Email</strong></span><a href="#" class="addone">add</a>
+          <span class="append-light-1"><b>Email</b></span><a href="#" class="addone">add</a>
           <ul class="email">
             <li>
               <input type="text" name="newperemail" class="text span-5" />
@@ -299,10 +361,10 @@
           </li>
         </div>
         <div>
-          <span class="append-light-1"><strong>Address</strong></span><a href="#" class="addone">add</a>
+          <span class="append-light-1"><b>Address</b></span><a href="#" class="addone">add</a>
           <ul class="address">
             <li>
-              <textarea cols="16" rows="5" name="newperdetails" class="span-6 tall-4"></textarea>
+              <textarea cols="16" rows="5" name="newperaddress" class="span-6 tall-4"></textarea>
               <select class="aligntop">
                 <option>Home</option>
                 <option>Work</option>
@@ -312,32 +374,113 @@
           </ul>
         </div>
         <div>
-          <span class="append-light-1"><strong>Instant Messenger</strong></span><a href="#" class="addone">add</a>
+          <b>Birthday:</b>
+          <input type="text" name="newcompdate" class="text datepicker span-3" />
+        </div>
+        <div>
+          <span class="append-light-1"><b>Instant Messenger</b></span><a href="#" class="addone">add</a>
           <ul class="instantmess">
             <li>
-              <input type="text" name="newinstantmess" class="text span-5" />
+              <input type="text" name="newperinstantmess" class="text span-5" />
               <select class="aligntop">
                 <option>AIM</option>
                 <option>GTalk</option>
+                <option>ICQ</option>
+                <option>IRC</option>
                 <option>MSN</option>
+                <option>MySpaceIM</option>
+                <option>XMPP</option>
+                <option>Yahoo</option>
+                <option>Other</option>
               </select>
             </li>
           </ul>
         </div>
         <div>
-          <span class="append-light-1"><strong>Online Presence</strong></span><a href="#" class="addone">add</a>
+          <span class="append-light-1"><b>Online Presence</b></span><a href="#" class="addone">add</a>
           <ul class="onlinepresence">
             <li>
-              <input type="text" name="newonlinepresence" class="text span-5" />
+              <input type="text" name="newperonlinepresence" class="text span-5" />
               <select class="aligntop">
+                <option>Bebo</option>
                 <option>Facebook</option>
-                <option>MySpace</option>
+                <option>last.fm</option>
                 <option>LinkedIn</option>
+                <option>MySpace</option>
+                <option>Orkut</option>
+                <option>Other</option>
               </select>
             </li>
           </ul>
         </div>
       </div>
+    </li>
+    <li id="mg" class="detailed bordered">
+      <b>Title:</b>
+      <input type="text" name="newmag" class="text" />
+      <div class="details hide">
+        <div>
+          <b>Do you have a subscription to this magazine?</b>
+          <input type="checkbox" name="newmagsub" class="aligntop" />
+        </div>
+        <div>          <b>Individual Issue?</b>          <input type="checkbox" name="newmagissue" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add issue</a>
+            <ul class="magissue">
+              <li>                <b>Number:</b>
+                <input type="text" name="newmagnumber" class="span-3" />
+                <b class="prepend-light-1">Rating:</b>                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </div>      </div>
+    </li>
+    <li id="co" class="detailed bordered">
+      <b>Title:</b>
+      <input type="text" name="newcomic" class="text" />
+      <div class="details hide">
+        <div>
+          <b>Do you have a subscription to this comic?</b>
+          <input type="checkbox" name="newcomicsub" class="aligntop" />
+        </div>
+        <div>          <b>Individual Issue?</b>          <input type="checkbox" name="newcomicissue" class="revealnext aligntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add issue</a>
+            <ul class="comicissue">
+              <li>                <b>Number:</b>
+                <input type="text" name="newcomicnumber" class="span-3" />
+                <b class="prepend-light-1">Rating:</b>                <select class="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+                <b>Signed?</b>
+                <input type="checkbox" name="newcomicsign" class="revealnext" />
+                <div class="hide">
+                  by <input type="text" name="newcomicsig" class="text" />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>      </div>
     </li>
   </ul>
 </div>
@@ -345,7 +488,6 @@
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
 <script type="text/javascript" src="js/jquery.autoresize.js"></script>
-<script type="text/javascript" src="js/jquery.autogrow.js"></script>
 <script type="text/javascript" src="js/application.js"></script>
 </body>
 </html>
