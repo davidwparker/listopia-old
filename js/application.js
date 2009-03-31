@@ -1,10 +1,11 @@
 $(function(){
 /* Appending/etc */
 //add the image, details, tags, copy, and remove links
-var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
-var detailslink = " <a class='detailslink' href='#'>details</a>";
-var cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>";
-var taglink = " <a class='tag' href='#'>tags</a>";
+// add link.... add tags, add comments, add ???
+var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>",
+ detailslink = " <a class='detailslink' href='#'>details</a>",
+ cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>",
+ taglink = " <a class='tag' href='#'>tags</a>";
 $('#types li.bordered').each(function(){
   $(this).prepend(dragdropimg);
 });
@@ -15,6 +16,21 @@ $('#types .details').each(function(){
   $(this).before(detailslink).before(taglink).before(cprmlinks);
 });
 $('#listInfo .details').before(detailslink).before(taglink);
+$('.movetoend').appendTo($('.movetoend').parent());
+//ratings
+var ratings = "<option value='0'>N/A</option>" +
+"<option value='1'>1</option>" +
+"<option value='2'>2</option>" +
+"<option value='3'>3</option>" +
+"<option value='4'>4</option>" +
+"<option value='5'>5</option>" +
+"<option value='6'>6</option>" +
+"<option value='7'>7</option>" +
+"<option value='8'>8</option>" +
+"<option value='9'>9</option>" +
+"<option value='10'>10</option>";
+$('.rating').append(ratings);
+
 //show details - TODO test once on couchdb server
 if($.cookie('show_details') === 'true'){
   $('.details').removeClass('hide');
@@ -64,12 +80,19 @@ $('.detailslink').click(function(){
   }
   return false;
 });
-//reveal next when when checkbox checked
+//reveal next/end when when checkbox checked
 $('.revealnext').click(function(){
   if($(this).attr('checked') === true){
     $(this).next().sdr();
   }else{
     $(this).next().sua().children().val('');
+  }
+});
+$('.revealend').click(function(){
+  if($(this).attr('checked') === true){
+    $(this).parent().find('.movetoend').sdr();
+  }else{
+    $(this).parent().find('.movetoend').sua().children().val('');
   }
 });
 //add button click events for which to clone
@@ -90,6 +113,7 @@ $('.addButton').click(function(){
     case 16:toAdd=$('#per').clone(true);break;
     case 17:toAdd=$('#mg').clone(true);break;
     case 18:toAdd=$('#co').clone(true);break;
+    case 19:toAdd=$('#tt').clone(true);break;
     default:toAdd=$('#tt').clone(true);
   }
   toAdd.addHideNoIds().val('').end().appendTo('#items').fadeDate();
@@ -99,7 +123,7 @@ $('.addButton').click(function(){
     $('#items li:first').html('');
     var selects = $('.saveAddBar select :selected').val();
     $('.saveAddBar').clone(true).find('select').val(selects).end()
-      .insertBefore($('#items'));
+      .insertAfter($('#items'));
   }
   function addSaveAddBar(){
     return ($('#items li').length > 1 && $('.saveAddBar').length === 1);
@@ -127,8 +151,8 @@ $('.copy').click(function(){
 //addone click events
 $('.addone').click(function(){
   var next = $(this).next(), klass = next.attr('class');
-  $('#types .' + klass).find('li:first').clone(true).addHideNoIds().val('').end()
-    .insertAfter(next.find('li:last')).fadeDate();
+  $('#types .' + klass).children('li:first').clone(true).addHideNoIds().val('').end()
+    .insertAfter(next.children('li:last')).fadeDate();
   return false;
 });
 //remove click events
@@ -136,13 +160,13 @@ $('.remove').click(function(){
   var parent = $(this).parent(), clone = $("#removeitem").clone(), 
   opts = {autoOpen:false,resizable:false,draggable:false,minHeight:70,modal:true,
     buttons:{"Delete":function(){
-      if (parent.parent().find('li').length !== 1){
+      if (parent.parent().children('li').length !== 1){
         parent.fadeOut(function(){
           $(this).remove();
           var li = $('#items li');
           if (removeAddSaveBar(li)){
             li.html('Add an item to your list!');
-            $('.saveAddBar:first').remove();
+            $('.saveAddBar:odd').remove();
           }
           function removeAddSaveBar(li){
             return (li.length === 1 && $('.saveAddBar').length === 2);
@@ -220,3 +244,4 @@ $.fn.sua = function(){
 //TODO: add couchdb!!!
 //TODO: add ajax to get ISBN info/etc from amazon
 //TODO: add ajax to get season list from amazon/imdb
+//TODO: export list as JSON

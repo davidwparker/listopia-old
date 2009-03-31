@@ -17,7 +17,7 @@
     <a href="#">register</a>
     <a href="#">etc</a>
   </div>
-  <div class="clear" />
+  <div class="clear"></div>
   <div id="header" class="prepend-1">
     <h1>Listopia</h1>
   </div>
@@ -46,8 +46,6 @@
           </div>
         </div>
         <hr />
-        <ul id="items"><li>Add an item to your list!</li>
-        </ul>
         <div class="saveAddBar">
           <input type="submit" value="Save" />
           <select>
@@ -59,7 +57,8 @@
               <option value="15">TV Show Episode</option>
               <option value="16">Person</option>
               <option value="17">Magazine</option>
-              <option value="18">Comic</option>
+              <option value="18">Comic Book</option>
+              <option value="19">Grocery</option>
             </optgroup>
             <optgroup label="Basic">
               <option value="1">Text</option>
@@ -72,8 +71,10 @@
           </select>
           <input type="button" class="button addButton" value="Add" />
           <a href="#" id="showHideDetails">show all details</a>
-          
+          <a href="#" id="exportListJSON">export list as JSON</a>
         </div>
+        <ul id="items"><li>Add an item to your list!</li>
+        </ul>
       </form>
     </div>
   </div>
@@ -84,7 +85,7 @@
   list ideas:
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
-  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc), bookmarks/URLs
+  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc), bookmarks/URLs, *groceries, cards (games), board games
   <div id="tagged" class="hide">
     <div class="tags push-light-img">
       <b>Tags:</b>
@@ -158,16 +159,6 @@
                 <input type="text" name="newenddate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
                 <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -194,16 +185,6 @@
                 <input type="text" name="newmvdate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
                 <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -217,7 +198,11 @@
       <div class="details hide">
         <div>
           <b>Complete Series?</b>
-          <input type="checkbox" name="newtvseries" class="aligntop" />
+          <input type="checkbox" name="newtvseries" class="revealnext aligntop" />
+          <div class="hide">
+            <b class="prepend-light-1">Rating:</b>            <select class="rating">
+            </select>
+          </div>
         </div>
         or
         <div>
@@ -235,16 +220,6 @@
                 </select>
                 <b class="prepend-light-1">Rating:</b>
                 <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -267,16 +242,6 @@
                 <input type="text" name="newtvenddate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
                 <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -301,16 +266,6 @@
             <option>2</option>
             <option>3</option>
           </select>          <b class="prepend-light-1">Rating:</b>          <select class="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
           </select>
         </div>
         <div>
@@ -326,16 +281,6 @@
                 <input type="text" name="newtvienddate" class="text datepicker span-3" />
                 <b class="prepend-light-1">Rating:</b>
                 <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -446,16 +391,6 @@
               <li>                <b>Number:</b>
                 <input type="text" name="newmagnumber" class="span-3" />
                 <b class="prepend-light-1">Rating:</b>                <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
               </li>
             </ul>
@@ -467,7 +402,7 @@
       <input type="text" name="newcomic" class="text" />
       <div class="details hide">
         <div>
-          <b>Do you have a subscription to this comic?</b>
+          <b>Do you have a subscription to this comic book?</b>
           <input type="checkbox" name="newcomicsub" class="aligntop" />
         </div>
         <div>          <b>Individual Issue?</b>          <input type="checkbox" name="newcomicissue" class="revealnext aligntop" />
@@ -475,23 +410,18 @@
             <a class="addone push-light-4" href="#">add issue</a>
             <ul class="comicissue">
               <li>                <b>Number:</b>
-                <input type="text" name="newcomicnumber" class="span-3" />
+                <input type="text" name="newcomicnumber" class="text span-3" />
                 <b class="prepend-light-1">Rating:</b>                <select class="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
                 </select>
                 <b>Signed?</b>
-                <input type="checkbox" name="newcomicsign" class="revealnext" />
-                <div class="hide">
-                  by <input type="text" name="newcomicsig" class="text" />
+                <input type="checkbox" name="newcomicsign" class="revealend" />
+                <div class="hide movetoend">
+                  <a class="addone push-light-4" href="#">add signature</a>
+                  <ul class="comicsig">
+                    <li>                      <b>by</b>
+                      <input type="text" name="newcomicsig" class="text" />
+                    </li>
+                  </ul>
                 </div>
               </li>
             </ul>
