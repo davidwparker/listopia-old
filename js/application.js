@@ -18,8 +18,7 @@ $('#types .details').each(function(){
 $('#listInfo .details').before(detailslink).before(taglink);
 $('.movetoend').appendTo($('.movetoend').parent());
 //ratings
-var ratings = "<option value='0'>N/A</option>" +
-"<option value='1'>1</option>" +
+var ratings = "<option value='1'>1</option>" +
 "<option value='2'>2</option>" +
 "<option value='3'>3</option>" +
 "<option value='4'>4</option>" +
