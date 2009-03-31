@@ -12,20 +12,41 @@
 </head>
 <body>
 <div id="container" class="container">
+  <div id="links" class="fr">
+    <a href="#">login</a>
+    <a href="#">register</a>
+    <a href="#">etc</a>
+  </div>
+  <div class="clear" />
   <div id="header" class="prepend-1">
     <h1>Listopia</h1>
   </div>
   <hr />
   <div id="content">
-    <div class="span-16 prepend-1 colborder">
+    <div id="sidebar" class="span-6 prepend-light-1">
+      <ul>
+        <li class="headerlink">Quick Settings</li>
+        <li>
+          <input type="checkbox" id="showDetails" class="aligntop" />
+          <span >always show details</span>
+        </li>
+        <li class="headerlink">My </li>
+        <li>lists</li>
+        <li>items (Coming soon)</li>
+      </ul>
+    </div>
+    <div id="maincontent" class="span-16 last lcolborder">
       <form action="">
-        <div class="listName tagged">
+        <div id="listInfo">
           <label for="listName" class="span-4">List Name:</label>
           <input type="text" id="listName" name="listName" class="title"/>
-          <div class="details hide"></div>
+          <div class="details">
+            <b>Private?</b>
+            <input type="checkbox" name="listPrivate" class="aligntop" />
+          </div>
         </div>
         <hr />
-        <ul id="items"><li></li>
+        <ul id="items"><li>Add an item to your list!</li>
         </ul>
         <div class="saveAddBar">
           <input type="submit" value="Save" />
@@ -50,15 +71,10 @@
             </optgroup>
           </select>
           <input type="button" class="button addButton" value="Add" />
+          <a href="#" id="showHideDetails">show all details</a>
+          
         </div>
       </form>
-    </div>
-    <div class="span-6 last">
-      list of links<br />
-      <ul>
-      <li>my lists</li>
-      <li>my items (Coming soon)</li>
-      </ul>
     </div>
   </div>
   <hr />
@@ -68,7 +84,7 @@
   list ideas:
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
-  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc)
+  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, CDs, cars, quotes, employers/jobs, online personas (facebook/myspace/etc), bookmarks/URLs
   <div id="tagged" class="hide">
     <div class="tags push-light-img">
       <b>Tags:</b>
@@ -488,6 +504,7 @@
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
 <script type="text/javascript" src="js/jquery.autoresize.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/application.js"></script>
 </body>
 </html>

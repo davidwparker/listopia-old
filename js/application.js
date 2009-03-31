@@ -14,9 +14,29 @@ $('#types li:not(.detailed)').each(function(){
 $('#types .details').each(function(){
   $(this).before(detailslink).before(taglink).before(cprmlinks);
 });
-$('#listName').after(taglink);
+$('#listInfo .details').before(detailslink).before(taglink);
+//show details - TODO test once on couchdb server
+if($.cookie('show_details') === 'true'){
+  $('.details').removeClass('hide');
+}
 
 /* Click Events */
+//always show details cookie - TODO test once on couchdb server
+$('#showDetails').click(function(){
+  if($(this).attr('checked') === true){
+    $.cookie('show_details','true');
+    $('.details').sdr();
+  }
+});
+//show/hide details
+$('#showHideDetails').toggle(function(){
+  $(this).html('hide all details');
+  $('.details:not(#listInfo .details)').sdr();
+},function(){
+  $(this).html('show all details');
+  $('.details:not(#listInfo .details)').sua();
+});
+
 //tag toggle (move to details?)
 $('.tag').click(function(){
   var parent = $(this).parent(), tags = parent.find('.tags');
@@ -30,9 +50,8 @@ $('.tag').click(function(){
     tags.sua();
   }
   return false;
-  function exists(jquery){
-    if (jquery.length === 1 && jquery.hasClass('hide'))
-      return true;
+  function exists(o){
+    return (o.length === 1 && o.hasClass('hide'));
   }
 });
 //toggles for details section (books/movies/etc)
@@ -74,12 +93,16 @@ $('.addButton').click(function(){
     default:toAdd=$('#tt').clone(true);
   }
   toAdd.addHideNoIds().val('').end().appendTo('#items').fadeDate();
-  addEvents(toAdd);
+  resizer(toAdd);
 
-  if($('#items li').length > 1 && $('.saveAddBar').length === 1){
+  if(addSaveAddBar()){
+    $('#items li:first').html('');
     var selects = $('.saveAddBar select :selected').val();
     $('.saveAddBar').clone(true).find('select').val(selects).end()
       .insertBefore($('#items'));
+  }
+  function addSaveAddBar(){
+    return ($('#items li').length > 1 && $('.saveAddBar').length === 1);
   }
 });
 //copy click events
@@ -97,7 +120,7 @@ $('.copy').click(function(){
     .find('select').each(function(i){
       $(this).val(selects[i]);
     }).end();
-  addEvents(clone);
+  resizer(clone);
   clone.insertAfter(parent).fadeDate();
   return false;
 });
@@ -116,8 +139,14 @@ $('.remove').click(function(){
       if (parent.parent().find('li').length !== 1){
         parent.fadeOut(function(){
           $(this).remove();
-          if ($('#items li').length === 1 && $('.saveAddBar').length === 2)
+          var li = $('#items li');
+          if (removeAddSaveBar(li)){
+            li.html('Add an item to your list!');
             $('.saveAddBar:first').remove();
+          }
+          function removeAddSaveBar(li){
+            return (li.length === 1 && $('.saveAddBar').length === 2);
+          }
         });
         clone.dialog('close');
       }
@@ -154,7 +183,8 @@ $('div.tags input.text').val(tagWords).focus(function(){
 //$('.rating').rating({maxvalue:5, increment:.5});
 //$("#stars-wrapper").stars({inputType: "select"});
 
-function addEvents(self){
+//text resizer
+function resizer(self){
   $(self).find('.hasAutoresize').each(function(){
     if ($(this).attr('tabindex') == -1){
       $(this).remove();
@@ -167,6 +197,7 @@ function addEvents(self){
     .find('textarea.tall-4').autoResize({minHeight:70});
 }
 
+//additional functions
 $.fn.fadeDate = function(){
   return $(this).fadeIn().removeClass('hide').find('.hasDatepicker').removeAttr('id')
     .removeClass('hasDatepicker').end().find('.datepicker').datepicker();
