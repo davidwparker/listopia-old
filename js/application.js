@@ -5,7 +5,7 @@ $(function(){
 var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>",
  detailslink = " <a class='detailslink' href='#'>details</a>",
  cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>",
- taglink = " <a class='tag' href='#'>tags</a>";
+ tgcmdiv = "<div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
 $('#types li.bordered').each(function(){
   $(this).prepend(dragdropimg);
 });
@@ -13,12 +13,13 @@ $('#types li:not(.detailed)').each(function(){
   $(this).append(cprmlinks);
 });
 $('#types .details').each(function(){
-  $(this).before(detailslink).before(taglink).before(cprmlinks);
+  $(this).before(detailslink+cprmlinks).append(tgcmdiv);
 });
-$('#listInfo .details').before(detailslink).before(taglink);
+$('#list_info .details').before(detailslink).append(tgcmdiv);
 $('.movetoend').appendTo($('.movetoend').parent());
 //ratings
-var ratings = "<option value='1'>1</option>" +
+var ratings = 
+"<option value='1'>1</option>" +
 "<option value='2'>2</option>" +
 "<option value='3'>3</option>" +
 "<option value='4'>4</option>" +
@@ -37,38 +38,42 @@ if($.cookie('show_details') === 'true'){
 
 /* Click Events */
 //always show details cookie - TODO test once on couchdb server
-$('#showDetails').click(function(){
+$('#show_details').click(function(){
   if($(this).attr('checked') === true){
     $.cookie('show_details','true');
     $('.details').sdr();
   }
 });
 //show/hide details
-$('#showHideDetails').toggle(function(){
+$('.show_hide_details').toggle(function(){
   $(this).html('hide all details');
-  $('.details:not(#listInfo .details)').sdr();
+  $('.details:not(#list_info .details)').sdr();
 },function(){
   $(this).html('show all details');
-  $('.details:not(#listInfo .details)').sua();
+  $('.details:not(#list_info .details)').sua();
 });
 
-//tag toggle (move to details?)
-$('.tag').click(function(){
-  var parent = $(this).parent(), tags = parent.find('.tags');
-  if(tags.length === 0){
-    $('#tagged').children().clone(true).addClass('hide')
-      .insertBefore(parent.find('.details'))
-      .sdr();
-  }else if (exists(tags)){
-    tags.sdr();
+//tags and comments
+function tagCommentClick(selector, type, typed){
+$(selector).click(function(){
+  var p = $(this).parent(), o = p.find(type);
+  if(o.length === 0){
+    $(typed).children().clone(true).addClass('hide')
+      .appendTo(p).sdr();
+      resizer(p);
+  }else if (existsAndHidden(o)){
+    o.sdr();
   }else{
-    tags.sua();
+    o.sua();
   }
   return false;
-  function exists(o){
-    return (o.length === 1 && o.hasClass('hide'));
-  }
 });
+}
+function existsAndHidden(o){
+  return (o.length === 1 && o.hasClass('hide'));
+}
+tagCommentClick('.tag','.tags','#tagged');
+tagCommentClick('.comment','.comments','#commented');
 //toggles for details section (books/movies/etc)
 $('.detailslink').click(function(){
   var details = $(this).parent().find('.details');
@@ -119,7 +124,7 @@ $('.addButton').click(function(){
   resizer(toAdd);
 
   if(addSaveAddBar()){
-    $('#items li:first').html('');
+    $('#items li:first').html('').removeClass('bordered');
     var selects = $('.saveAddBar select :selected').val();
     $('.saveAddBar').clone(true).find('select').val(selects).end()
       .insertAfter($('#items'));
@@ -164,7 +169,7 @@ $('.remove').click(function(){
           $(this).remove();
           var li = $('#items li');
           if (removeAddSaveBar(li)){
-            li.html('Add an item to your list!');
+            li.html('Add an item to your list!').addClass('bordered');
             $('.saveAddBar:odd').remove();
           }
           function removeAddSaveBar(li){
@@ -186,7 +191,7 @@ $('.remove').click(function(){
 
 /* focus/blur events */
 // add keywords
-var tagWords = "Comma separated tags e.g.: NY, New York";
+var tagWords = "Comma separated tags: NY, New York";
 $('div.tags input.text').val(tagWords).focus(function(){
   if ($(this).val() === tagWords){
     this.value = "";
@@ -217,7 +222,8 @@ function resizer(self){
   }).end()
     .find('textarea.tall-6').autoResize({minHeight:110}).end()
     .find('textarea.tall-5').autoResize({minHeight:90}).end()
-    .find('textarea.tall-4').autoResize({minHeight:70});
+    .find('textarea.tall-4').autoResize({minHeight:70}).end()
+    .find('textarea.tall-light-7').autoResize({minHeight:35});
 }
 
 //additional functions

@@ -47,7 +47,7 @@ del {color:#666;}
 pre {margin:1.5em 0;white-space:pre;}
 pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
 li ul, li ol {margin:0 1.5em;}
-ul, ol {margin:0 1em 1em 1em;}
+ul, ol {margin:0 0.5em 1em 0.5em;}
 ul {list-style-type:none;}
 ol {list-style-type:decimal;}
 dl {margin:0 0 1.5em 0;}
@@ -298,10 +298,12 @@ textarea {width:300px;height:200px;padding:5px;}
 .prepend-light-1{padding-left:5px;}
 .push-light-img{margin-left:16px;}
 .push-light-4{margin-left:20px;}
-li.bordered{padding: 1px 4px;margin: 1px 5px 1px;border:1px solid #eee;}
 div.lcolborder{padding-left:24px;border-left:1px solid #eee;}
+li.bordered{padding: 1px 4px;margin: 1px 5px 1px;border:1px solid #eee;}
+ul#main_links li{float:left;padding-left:4px;}
 
 /* forms */
+.tall-light-7{height:35px;}
 .tall-4{height:70px;}
 .tall-5{height:90px;}
 .tall-6{height:110px;}
