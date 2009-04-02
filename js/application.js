@@ -202,10 +202,8 @@ $('div.tags input.text').val(tagWords).focus(function(){
   }
 });
 
-//make the items sortable and remove the blank row
-//$('#items').sortable({axis:'y',cursor:'n-resize'});
-//$('#items, #items a').disableSelection();
-
+//sortable
+$('#items').sortable({'axis':'y','cursor':'n-resize','handle':'.ui-icon-arrowthick-2-n-s'});
 
 //star ratings
 //$('.rating').rating({maxvalue:5, increment:.5});
