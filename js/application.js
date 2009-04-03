@@ -2,11 +2,11 @@ $(function(){
 /* Appending/etc */
 //add the image, details, tags, copy, and remove links
 // add link.... add tags, add comments, add ???
-var dragdropimg = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>",
+var dragdropimg = "<span class='ui-icon-dragdrop ui-icon ui-icon-arrowthick-2-n-s'></span>",
  detailslink = " <a class='detailslink' href='#'>details</a>",
  cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>",
  tgcmdiv = "<div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
-$('#types li.bordered').each(function(){
+$('#types li.item').each(function(){
   $(this).prepend(dragdropimg);
 });
 $('#types li:not(.detailed)').each(function(){
@@ -118,13 +118,18 @@ $('.addButton').click(function(){
     case 17:toAdd=$('#mg').clone(true);break;
     case 18:toAdd=$('#co').clone(true);break;
     case 19:toAdd=$('#tt').clone(true);break;
+    case 20:toAdd=$('#cd').clone(true);break;
+    case 21:toAdd=$('#qa').clone(true);break;
+    case 22:toAdd=$('#re').clone(true);break;
+    case 23:toAdd=$('#op').clone(true);break;
+    case 24:toAdd=$('#so').clone(true);break;
     default:toAdd=$('#tt').clone(true);
   }
   toAdd.addHideNoIds().val('').end().appendTo('#items').fadeDate();
   resizer(toAdd);
 
   if(addSaveAddBar()){
-    $('#items li:first').html('').removeClass('bordered');
+    $('#items li:first').remove();
     var selects = $('.saveAddBar select :selected').val();
     $('.saveAddBar').clone(true).find('select').val(selects).end()
       .insertAfter($('#items'));
@@ -136,7 +141,6 @@ $('.addButton').click(function(){
 //copy click events
 $('.copy').click(function(){
   var parent = $(this).parent(), selects = [];
-  //hack fix due to jquery not cloning select values
   parent.find('select :selected').each(function(i){
     selects[i] = $(this).val();
   }).end()
@@ -156,32 +160,22 @@ $('.copy').click(function(){
 $('.addone').click(function(){
   var next = $(this).next(), klass = next.attr('class');
   $('#types .' + klass).children('li:first').clone(true).addHideNoIds().val('').end()
-    .insertAfter(next.children('li:last')).fadeDate();
+    .appendTo(next).fadeDate();
   return false;
 });
 //remove click events
 $('.remove').click(function(){
   var parent = $(this).parent(), clone = $("#removeitem").clone(), 
-  opts = {autoOpen:false,resizable:false,draggable:false,minHeight:70,modal:true,
+  opts = {autoOpen:false,draggable:false,minHeight:70,modal:true,resizable:false,dialogClass:"dialog-error",
     buttons:{"Delete":function(){
-      if (parent.parent().children('li').length !== 1){
-        parent.fadeOut(function(){
-          $(this).remove();
-          var li = $('#items li');
-          if (removeAddSaveBar(li)){
-            li.html('Add an item to your list!').addClass('bordered');
-            $('.saveAddBar:odd').remove();
-          }
-          function removeAddSaveBar(li){
-            return (li.length === 1 && $('.saveAddBar').length === 2);
-          }
-        });
-        clone.dialog('close');
-      }
-      else{
-        parent.fadeOut(function(){$(this).html('')});
-        clone.dialog('close');
-      }
+      parent.fadeOut(function(){
+        $(this).remove();
+        if($('#items li').length === 0 ){
+          $('#items').append("<li class='item'>You don't have any items on your list yet... why don't you add one? :)</li>");
+          $('.saveAddBar:odd').remove();
+        }
+      });
+      clone.dialog('close');
     },"Oops! No thanks!":function(){clone.dialog('close');}}
   };
   clone.dialog(opts);
@@ -202,8 +196,14 @@ $('div.tags input.text').val(tagWords).focus(function(){
   }
 });
 
+/* change events */
+//update both itemOption if one is changed
+$('select.itemOptions').change(function(){
+  $('select.itemOptions').val($(this).val());
+});
+
 //sortable
-$('#items').sortable({'axis':'y','cursor':'n-resize','handle':'.ui-icon-arrowthick-2-n-s'});
+$('#items').sortable({'axis':'y','cursor':'pointer','handle':'.ui-icon-arrowthick-2-n-s'});
 
 //star ratings
 //$('.rating').rating({maxvalue:5, increment:.5});
