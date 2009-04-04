@@ -2,24 +2,23 @@ $(function(){
 /* Appending/etc */
 //add the image, details, tags, copy, and delete links
 // add link.... add tags, add comments, add ???
-var dragdropimg = "<span class='ui-icon ui-icon-border ui-icon-dragdrop'></span>",
- detailslink = " <div class='fr itemtoolbar'><span class='ui-icon ui-icon-border ui-icon-details detailslink'></span><a class='detailslink' href='#'>details</a></div>",
+var dragdropimg = "<div class='ui-icon ui-icon-border-green ui-icon-dragdrop'></div>",
+ detailslink = " <div class='itemtoolbar'><span class='ui-icon ui-icon-border-blue ui-icon-details detailslink'></span><a class='detailslink' href='#'>details</a></div>",
  cprmlinks = " <a class='copy' href='#'>copy</a> <a class='delete' href='#'>delete</a>",
- tgcmdiv = "<div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
+ tgcmdiv = "<div class='clearfix'></div><div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
 $('#types li.item').each(function(){
   $(this).prepend(dragdropimg);
 });
-$('#types .basic').each(function(){
-  var cprmlinks2 = "<div class='fr'>" + cprmlinks + "</div>";
-  $(this).prepend(cprmlinks2);
+$('#types .basic .itemcontent').each(function(){
+  var cprmlinks2 = "<div class='itemtoolbar'>" + cprmlinks + "</div>";
+  $(this).prepend(cprmlinks2).append(tgcmdiv);
 });
 $('#types .details ul li').each(function(){
   $(this).append(cprmlinks);
 });
 $('#types .details').each(function(){
-  $(this).prev().before(detailslink).parent().find('a.detailslink').after(cprmlinks).end().append(tgcmdiv);
+  $(this).parents('.item').find('.itemcontent').prepend(detailslink).append(tgcmdiv).parent().find('a.detailslink').after(cprmlinks);//.append(tgcmdiv);
 });
-$('#list_info .details').append(tgcmdiv);
 $('.movetoend').appendTo($('.movetoend').parent());
 //ratings
 var ratings = 
@@ -49,6 +48,7 @@ $('#show_details').click(function(){
   }
 });
 //show/hide all details
+//  when the list gets really big, this can get really slow.  May want to add a lightbox/now loading img
 $('.show_hide_details').toggle(function(){
   $(this).html('hide all details');
   $('.details:not(#list_info .details,#types .details)').sdr();

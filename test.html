@@ -45,6 +45,7 @@
           <div class="details">
             <b>Public?</b>
             <input type="checkbox" name="listPrivate" class="valigntop" />
+            <div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>
           </div>
         </div>
         <hr />
@@ -92,7 +93,7 @@
   list ideas:
   to-do, books, tv shows, movies, magazines, comics, dvds?, other collectibles?, cars, groceries, people/address, baby names, concerts, CDs, music, celebrities, vacation spots, places to live, websites (bookmarks)<br />
   predefined things:
-  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, *CDs, cars, car parts, quotes, employers/jobs, *online presences (facebook/myspace/etc), bookmarks/URLs, *groceries, cards (games), board games, stocks, *questions/answers, goals, *recipes, lists, workouts, songs
+  *to-do, *books, *tv shows, *tv show episodes, *movies, *magazines, *comics, *people/address, addresses, *CDs, cars, car parts, quotes, employers/jobs, *online presences (facebook/myspace/etc), bookmarks/URLs, *groceries, cards (games), board games, stocks, *questions/answers, goals, *recipes, lists, workouts, *songs
 <div id="tagged" class="hide">
   <div class="tags">
     <b>Tags:</b>
@@ -108,443 +109,477 @@
 <div id="deleteitem" title="Delete?" class="hide">Do you permanently want to delete this item?</div>
 <ul id="types" class="hide">
   <li id="tt" class="item basic">
-    <div>
+    <div class="itemcontent">
       <input type="text" class="text" name="text" />
     </div>
   </li>
   <li id="tat" class="item basic">
-    <textarea cols="16" rows="5" name="textarea" class="tall-6"></textarea>
+    <div class="itemcontent">
+      <textarea cols="16" rows="5" name="textarea" class="tall-6"></textarea>
+    </div>
   </li>
   <li id="ttat" class="item basic">
-    <input type="text" name="texttextareatext" class="text" /><br />
-    <textarea cols="16" rows="5" name="texttextarea" class="tall-6 push-light-img"></textarea>
+    <div class="itemcontent">
+      <input type="text" name="texttextareatext" class="text" /><br />
+      <textarea cols="16" rows="5" name="texttextarea" class="tall-6"></textarea>
+    </div>
   </li>
   <li id="tdt" class="item basic">
-    <input type="text" name="textwdatedate" class="text datepicker span-3" />
-    <input type="text" name="textwdatetext" class="text" />
+    <div class="itemcontent">
+      <input type="text" name="textwdatedate" class="text datepicker span-3" />
+      <input type="text" name="textwdatetext" class="text" />
+    </div>
   </li>
   <li id="tadt" class="item basic">
-    <input type="text" name="textareawdatedate" class="text datepicker span-3" /><br />
-    <textarea cols="16" rows="5" name="textareawdatearea" class="tall-6 push-light-img"></textarea>
+    <div class="itemcontent">
+      <input type="text" name="textareawdatedate" class="text datepicker span-3" /><br />
+      <textarea cols="16" rows="5" name="textareawdatearea" class="tall-6"></textarea>
+    </div>
   </li>
   <li id="ttadt" class="item basic">
-    <input type="text" name="texttextareadatedate" class="text datepicker span-3" />
-    <input type="text" name="texttextareadatetext" class="text" /><br />
-    <textarea cols="16" rows="5" name="texttextareadatearea" class="tall-6 push-light-img"></textarea>
-  </li>
-  <li id="todo" class="detailed item clearfix">
-    <div>
-      <b>What:</b>
-      <input type="text" name="todo" class="text" />
+    <div class="itemcontent">
+      <input type="text" name="texttextareadatedate" class="text datepicker span-3" />
+      <input type="text" name="texttextareadatetext" class="text" /><br />
+      <textarea cols="16" rows="5" name="texttextareadatearea" class="tall-6"></textarea>
     </div>
-    <div class="details hide">
+  </li>
+  <li id="todo" class="detailed item">
+    <div class="itemcontent">
       <div>
-        <b>Due Date:</b>
-        <input type="text" name="tododuedate" class="text datepicker span-3" />
+        <b>What:</b>
+        <input type="text" name="todo" class="text" />
       </div>
-      <div>
-        <b class="valigntop">Details:</b>
-        <textarea name="tododetails" class="tall-5" cols="16" rows="5"></textarea>
-      </div>
-      <div>
-        <b>Completed?</b>
-        <input type="checkbox" name="todocomp" class="revealnext valigntop" />
-        <div class="hide">
-          <b>Completion Date:</b>
-          <input type="text" name="todocompdate" class="text datepicker span-3" />
+      <div class="details hide">
+        <div>
+          <b>Due Date:</b>
+          <input type="text" name="tododuedate" class="text datepicker span-3" />
+        </div>
+        <div>
+          <b class="valigntop">Details:</b>
+          <textarea name="tododetails" class="tall-5" cols="16" rows="5"></textarea>
+        </div>
+        <div>
+          <b>Completed?</b>
+          <input type="checkbox" name="todocomp" class="revealnext valigntop" />
+          <div class="hide">
+            <b>Completion Date:</b>
+            <input type="text" name="todocompdate" class="text datepicker span-3" />
+          </div>
         </div>
       </div>
     </div>
   </li>
   <li id="bk" class="detailed item">
-    <div>
-      <b>Title or ISBN:</b>
-      <input type="text" name="book" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Do you own this book?</b>
-        <input type="checkbox" name="bookown" class="valigntop" />
+        <b>Title or ISBN:</b>
+        <input type="text" name="book" class="text" />
       </div>
-      <div>
-        <b>Have you read this book?</b>
-        <input type="checkbox" name="bookread" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add reading</a>
-          <ul class="bkreading">
-            <li>
-              <b>Start Date:</b>
-              <input type="text" name="bookstartdate" class="text datepicker span-3" />
-              <b class="prepend-light-1">End Date:</b>
-              <input type="text" name="bookenddate" class="text datepicker span-3" />
-              <b class="prepend-light-1">Rating:</b>
-              <select class="rating"><option value=''></option></select>
-            </li>
-          </ul>
+      <div class="details hide">
+        <div>
+          <b>Do you own this book?</b>
+          <input type="checkbox" name="bookown" class="valigntop" />
+        </div>
+        <div>
+          <b>Have you read this book?</b>
+          <input type="checkbox" name="bookread" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add reading</a>
+            <ul class="bkreading">
+              <li>
+                <b>Start Date:</b>
+                <input type="text" name="bookstartdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">End Date:</b>
+                <input type="text" name="bookenddate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating"><option value=''></option></select>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </li>
   <li id="mv" class="detailed item">
-    <div>
-      <b>Title or ISBN:</b>
-      <input type="text" name="movie" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Do you own this movie?</b>
-        <input type="checkbox" name="movieown" class="revealnext valigntop" />
-          <div class="hide">
-          <a class="addone push-light-4" href="#">add type</a>
-          <ul class="tvowntype">
-            <li>
-              <b class="prepend-light-1">Type:</b>
-              <select>
-                <option value='dv'>DVD</option>
-                <option value='di'>Digital</option>
-                <option value='br'>Blu-Ray</option>
-                <option value='vh'>VHS</option>
-                <option value='ot'>Other</option>
-              </select>
-            </li>
-          </ul>
-        </div>
+        <b>Title or ISBN:</b>
+        <input type="text" name="movie" class="text" />
       </div>
-      <div>
-        <b>Have you seen this movie?</b>
-        <input type="checkbox" name="movieseen" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add viewing</a>
-          <ul class="mvviewing">
-            <li>
-              <b>Date:</b>
-              <input type="text" name="moviedate" class="text datepicker span-3" />
-              <b class="prepend-light-1">Rating:</b>
-              <select class="rating"><option value=''></option></select>
-            </li>
-          </ul>
-        </div>          
+      <div class="details hide">
+        <div>
+          <b>Do you own this movie?</b>
+          <input type="checkbox" name="movieown" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add type</a>
+            <ul class="tvowntype">
+              <li>
+                <b class="prepend-light-1">Type:</b>
+                <select>
+                  <option value='dv'>DVD</option>
+                  <option value='di'>Digital</option>
+                  <option value='br'>Blu-Ray</option>
+                  <option value='vh'>VHS</option>
+                  <option value='ot'>Other</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <b>Have you seen this movie?</b>
+          <input type="checkbox" name="movieseen" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add viewing</a>
+            <ul class="mvviewing">
+              <li>
+                <b>Date:</b>
+                <input type="text" name="moviedate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating"><option value=''></option></select>
+              </li>
+            </ul>
+          </div>          
+        </div>
       </div>
     </div>
   </li>
   <li id="tv" class="detailed item">
-    <div>
-      <b>Title or ISBN:</b>
-      <input type="text" name="tv" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Complete Series?</b>
-        <input type="checkbox" name="tvseries" class="revealnext valigntop" />
-        <div class="hide">
-          <b class="prepend-light-1">Rating:</b>          <select class="rating"><option value=''></option></select>
-        </div>
+        <b>Title or ISBN:</b>
+        <input type="text" name="tv" class="text" />
       </div>
-      or
-      <div>
-        <b>Individual Season?</b>
-        <input type="checkbox" name="tvseason" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add season</a>
-          <ul class="tvseason">
-            <li>
-              <b>Season:</b>
-              <input type="text" class="text span-1" name="tvseason"/>
-              <b class="prepend-light-1">Rating:</b>
-              <select class="rating"><option value=''></option></select>
-            </li>
-          </ul>
+      <div class="details hide">
+        <div>
+          <b>Complete Series?</b>
+          <input type="checkbox" name="tvseries" class="revealnext valigntop" />
+          <div class="hide">
+            <b class="prepend-light-1">Rating:</b>            <select class="rating"><option value=''></option></select>
+          </div>
         </div>
-      </div>
-      <div>
-        <b>Do you own this TV show?</b>
-        <input type="checkbox" name="tvown" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add type</a>
-          <ul class="tvowntype">
-            <li>
-              <b class="prepend-light-1">Type:</b>
-              <select>
-                <option value='dv'>DVD</option>
-                <option value='di'>Digital</option>
-                <option value='br'>Blu-Ray</option>
-                <option value='vh'>VHS</option>
-                <option value='ot'>Other</option>
-              </select>
-            </li>
-          </ul>
+        or
+        <div>
+          <b>Individual Season?</b>
+          <input type="checkbox" name="tvseason" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add season</a>
+            <ul class="tvseason">
+              <li>
+                <b>Season:</b>
+                <input type="text" class="text span-1" name="tvseason"/>
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating"><option value=''></option></select>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div>
-        <b>Have you seen this TV show?</b>
-        <input type="checkbox" name="tvseen" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add viewing</a>
-          <ul class="tvviewing">
-            <li>
-              <b>Start Date:</b>
-              <input type="text" name="tvstartdate" class="text datepicker span-3" />
-              <b class="prepend-light-1">End Date:</b>
-              <input type="text" name="tvenddate" class="text datepicker span-3" />
-              <b class="prepend-light-1">Rating:</b>
-              <select class="rating"><option value=''></option></select>
-            </li>
-          </ul>
+        <div>
+          <b>Do you own this TV show?</b>
+          <input type="checkbox" name="tvown" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add type</a>
+            <ul class="tvowntype">
+              <li>
+                <b class="prepend-light-1">Type:</b>
+                <select>
+                  <option value='dv'>DVD</option>
+                  <option value='di'>Digital</option>
+                  <option value='br'>Blu-Ray</option>
+                  <option value='vh'>VHS</option>
+                  <option value='ot'>Other</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <b>Have you seen this TV show?</b>
+          <input type="checkbox" name="tvseen" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add viewing</a>
+            <ul class="tvviewing">
+              <li>
+                <b>Start Date:</b>
+                <input type="text" name="tvstartdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">End Date:</b>
+                <input type="text" name="tvenddate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating"><option value=''></option></select>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </li>
   <li id="tvi" class="detailed item">
-    <div>
-      <b>Title:</b>
-      <input type="text" name="tvi" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Season:</b>
-        <input type="text" class="text span-1" name="tviseason"/>
-        <b>Episode:</b>
-        <input type="text" class="text span-1" name="tviepisode"/>
-        <b class="prepend-light-1">Rating:</b>        <select class="rating"><option value=''></option></select>
+        <b>Title:</b>
+        <input type="text" name="tvi" class="text" />
       </div>
+      <div class="details hide">
+        <div>
+          <b>Season:</b>
+          <input type="text" class="text span-1" name="tviseason"/>
+          <b>Episode:</b>
+          <input type="text" class="text span-1" name="tviepisode"/>
+          <b class="prepend-light-1">Rating:</b>          <select class="rating"><option value=''></option></select>
+        </div>
+        <div>
+          <b>Have you seen this episode?</b>
+          <input type="checkbox" name="tviseen" class="revealnext valigntop" />
+          <div class="hide">
+            <a class="addone push-light-4" href="#">add viewing</a>
+            <ul class="tviviewing">
+              <li>
+                <b>Start Date:</b>
+                <input type="text" name="tvistartdate" class="text datepicker span-3" />
+                <b class="prepend-light-1">End Date:</b>
+                <input type="text" name="tvienddate" class="text datepicker span-3" />
+                <b class="prepend-light-1">Rating:</b>
+                <select class="rating"><option value=''></option></select>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li id="per" class="detailed item">
+    <div class="itemcontent">
       <div>
-        <b>Have you seen this episode?</b>
-        <input type="checkbox" name="tviseen" class="revealnext valigntop" />
-        <div class="hide">
-          <a class="addone push-light-4" href="#">add viewing</a>
-          <ul class="tviviewing">
+        <b>Name:</b>
+        <input type="text" name="person" class="text" />
+      </div>
+      <div class="details hide">
+        <div>
+          <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add</a>
+          <ul class="phone">
             <li>
-              <b>Start Date:</b>
-              <input type="text" name="tvistartdate" class="text datepicker span-3" />
-              <b class="prepend-light-1">End Date:</b>
-              <input type="text" name="tvienddate" class="text datepicker span-3" />
-              <b class="prepend-light-1">Rating:</b>
-              <select class="rating"><option value=''></option></select>
+              <input type="text" name="perphone" class="text span-8" />
+              <select class="valigntop">
+                <option>Home</option>
+                <option>Cell</option>
+                <option>Work</option>
+                <option>Home Fax</option>
+                <option>Work Fax</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="append-light-1"><b>Email</b></span><a href="#" class="addone">add</a>
+          <ul class="email">
+            <li>
+              <input type="text" name="peremail" class="text span-8" />
+              <select class="valigntop">
+                <option>Home</option>
+                <option>Work</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="append-light-1"><b>Address</b></span><a href="#" class="addone">add</a>
+          <ul class="address">
+            <li>
+              <textarea cols="16" rows="5" name="peraddress" class="span-8 tall-4"></textarea>
+              <select class="valigntop">
+                <option>Home</option>
+                <option>Work</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <b>Birthday:</b>
+          <input type="text" name="perbirthdate" class="text datepicker span-3" />
+        </div>
+        <div>
+          <span class="append-light-1"><b>Instant Messenger</b></span><a href="#" class="addone">add</a>
+          <ul class="instantmess">
+            <li>
+              <input type="text" name="perinstantmess" class="text span-8" />
+              <select class="valigntop">
+                <option>AIM</option>
+                <option>GTalk</option>
+                <option>ICQ</option>
+                <option>IRC</option>
+                <option>MSN</option>
+                <option>MySpaceIM</option>
+                <option>XMPP</option>
+                <option>Yahoo</option>
+                <option>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="append-light-1"><b>Online Presence</b></span><a href="#" class="addone">add</a>
+          <ul class="onlinepresence">
+            <li>
+              <input type="text" name="peronlinepresence" class="text span-8" />
+              <select class="valigntop">
+                <option>Bebo</option>
+                <option>DeviantART</option>
+                <option>Facebook</option>
+                <option>Flixster</option>
+                <option>Friendster</option>
+                <option>hi5</option>
+                <option>imeem</option>
+                <option>Last.fm</option>
+                <option>LinkedIn</option>
+                <option>LiveJournal</option>
+                <option>MySpace</option>
+                <option>Orkut</option>
+                <option>Twitter</option>
+                <option>Other</option>
+              </select>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </li>
-  <li id="per" class="detailed item">
-    <div>
-      <b>Name:</b>
-      <input type="text" name="person" class="text" />
-    </div>
-    <div class="details hide">
-      <div>
-        <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add</a>
-        <ul class="phone">
-          <li>
-            <input type="text" name="perphone" class="text span-8" />
-            <select class="valigntop">
-              <option>Home</option>
-              <option>Cell</option>
-              <option>Work</option>
-              <option>Home Fax</option>
-              <option>Work Fax</option>
-              <option>Other</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <span class="append-light-1"><b>Email</b></span><a href="#" class="addone">add</a>
-        <ul class="email">
-          <li>
-            <input type="text" name="peremail" class="text span-8" />
-            <select class="valigntop">
-              <option>Home</option>
-              <option>Work</option>
-              <option>Other</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <span class="append-light-1"><b>Address</b></span><a href="#" class="addone">add</a>
-        <ul class="address">
-          <li>
-            <textarea cols="16" rows="5" name="peraddress" class="span-8 tall-4"></textarea>
-            <select class="valigntop">
-              <option>Home</option>
-              <option>Work</option>
-              <option>Other</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <b>Birthday:</b>
-        <input type="text" name="perbirthdate" class="text datepicker span-3" />
-      </div>
-      <div>
-        <span class="append-light-1"><b>Instant Messenger</b></span><a href="#" class="addone">add</a>
-        <ul class="instantmess">
-          <li>
-            <input type="text" name="perinstantmess" class="text span-8" />
-            <select class="valigntop">
-              <option>AIM</option>
-              <option>GTalk</option>
-              <option>ICQ</option>
-              <option>IRC</option>
-              <option>MSN</option>
-              <option>MySpaceIM</option>
-              <option>XMPP</option>
-              <option>Yahoo</option>
-              <option>Other</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <span class="append-light-1"><b>Online Presence</b></span><a href="#" class="addone">add</a>
-        <ul class="onlinepresence">
-          <li>
-            <input type="text" name="peronlinepresence" class="text span-11" />
-            <select class="valigntop">
-              <option>Bebo</option>
-              <option>DeviantART</option>
-              <option>Facebook</option>
-              <option>Flixster</option>
-              <option>Friendster</option>
-              <option>hi5</option>
-              <option>imeem</option>
-              <option>Last.fm</option>
-              <option>LinkedIn</option>
-              <option>LiveJournal</option>
-              <option>MySpace</option>
-              <option>Orkut</option>
-              <option>Twitter</option>
-              <option>Other</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </li>
   <li id="mg" class="detailed item">
-    <div>
-      <b>Title:</b>
-      <input type="text" name="mag" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Do you have a subscription to this magazine?</b>
-        <input type="checkbox" name="magsub" class="valigntop" />
+        <b>Title:</b>
+        <input type="text" name="mag" class="text" />
       </div>
-      <div>
-        <a class="addone push-light-4" href="#">add issue</a>
-        <ul class="magissue">
-          <li>            <b>Number:</b>
-            <input type="text" name="magnumber" class="text span-3" />
-            <b class="prepend-light-1">Rating:</b>            <select class="rating"><option value=''></option></select>
-          </li>
-        </ul>
+      <div class="details hide">
+        <div>
+          <b>Do you have a subscription to this magazine?</b>
+          <input type="checkbox" name="magsub" class="valigntop" />
+        </div>
+        <div>
+          <a class="addone push-light-4" href="#">add issue</a>
+          <ul class="magissue">
+            <li>              <b>Number:</b>
+              <input type="text" name="magnumber" class="text span-3" />
+              <b class="prepend-light-1">Rating:</b>              <select class="rating"><option value=''></option></select>
+            </li>
+          </ul>
+        </div>
       </div>    </div>
   </li>
   <li id="co" class="detailed item">
-    <div>
-      <b>Title:</b>
-      <input type="text" name="comic" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Do you have a subscription to this comic book?</b>
-        <input type="checkbox" name="comicsub" class="valigntop" />
+        <b>Title:</b>
+        <input type="text" name="comic" class="text" />
       </div>
-      <div>
-        <a class="addone push-light-4" href="#">add issue</a>
-        <ul class="comicissue">
-          <li>            <b>Number:</b>
-            <input type="text" name="comicnumber" class="text span-3" />
-            <b class="prepend-light-1">Rating:</b>            <select class="rating"><option value=''></option></select>
-            <b>Signed?</b>
-            <input type="checkbox" name="comicsign" class="revealend" />
-            <div class="hide movetoend">
-              <a class="addone push-light-4" href="#">add signature</a>
-              <ul class="comicsig">
-                <li>                  <b>by</b>
-                  <input type="text" name="comicsig" class="text" />
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>    </div>
+      <div class="details hide">
+        <div>
+          <b>Do you have a subscription to this comic book?</b>
+          <input type="checkbox" name="comicsub" class="valigntop" />
+        </div>
+        <div>
+          <a class="addone push-light-4" href="#">add issue</a>
+          <ul class="comicissue">
+            <li>              <b>Number:</b>
+              <input type="text" name="comicnumber" class="text span-3" />
+              <b class="prepend-light-1">Rating:</b>              <select class="rating"><option value=''></option></select>
+              <b>Signed?</b>
+              <input type="checkbox" name="comicsign" class="revealend" />
+              <div class="hide movetoend">
+                <a class="addone push-light-4" href="#">add signature</a>
+                <ul class="comicsig">
+                  <li>                    <b>by</b>
+                    <input type="text" name="comicsig" class="text" />
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>      </div>
+    </div>
   </li>
   <li id="cd" class="detailed item">
-    <div>
-      <b>Name or ISBN:</b>
-      <input type="text" name="cd" class="text" />
-    </div>
-    <div class="details hide">
+    <div class="itemcontent">
       <div>
-        <b>Do you own this cd?</b>
-        <input type="checkbox" name="cdown" class="valigntop" />
+        <b>Name or ISBN:</b>
+        <input type="text" name="cd" class="text" />
       </div>
-      <div>
-        <b class="prepend-light-1">Rating:</b>
-        <select class="rating"><option value=''></option></select>
+      <div class="details hide">
+        <div>
+          <b>Do you own this cd?</b>
+          <input type="checkbox" name="cdown" class="valigntop" />
+        </div>
+        <div>
+          <b class="prepend-light-1">Rating:</b>
+          <select class="rating"><option value=''></option></select>
+        </div>
       </div>
     </div>
   </li>
-  <li id="qa" class="item">
-    <div>
+  <li id="qa" class="basic item">
+    <div class="itemcontent">
       <b class="valigntop">Question:</b>
       <textarea cols="16" rows="5" name="qaquestion" class="span-10 tall-light-7"></textarea>
       <br />
-      <b class="push-light-img valigntop">Answer:</b>
+      <b class="valigntop">Answer:</b>
       <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
     </div>
   </li>
   <li id="re" class="detailed item">
-    <div>
-      <b>Name:</b>
-      <input type="text" name="recipe" class="text" />
-    </div>
-    <div class="details hide">
-      <span class="append-light-1"><b>Ingredients</b></span><a href="#" class="addone">add</a>
-      <ul class="recipeing">
-        <li>          <input type="text" name="recipeing" class="text" />
-        </li>
-      </ul>
-      <span class="append-light-1"><b>Preparation Steps</b></span><a href="#" class="addone">add</a>
-      <ul class="recipestep">
-        <li>          <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
-        </li>
-      </ul>
+    <div class="itemcontent">
       <div>
-        <b>Rating:</b>
-        <select class="rating"><option value=''></option></select>
+        <b>Name:</b>
+        <input type="text" name="recipe" class="text" />
+      </div>
+      <div class="details hide">
+        <span class="append-light-1"><b>Ingredients</b></span><a href="#" class="addone">add</a>
+        <ul class="recipeing">
+          <li>            <input type="text" name="recipeing" class="text" />
+          </li>
+        </ul>
+        <span class="append-light-1"><b>Preparation Steps</b></span><a href="#" class="addone">add</a>
+        <ul class="recipestep">
+          <li>            <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
+          </li>
+        </ul>
+        <div>
+          <b>Rating:</b>
+          <select class="rating"><option value=''></option></select>
+        </div>
       </div>
     </div>
   </li>
-  <li id="op" class="detailed item">
-    <input type="text" name="peronlinepresence" class="text span-11" />
-    <select class="valigntop">
-      <option>Bebo</option>
-      <option>DeviantART</option>
-      <option>Facebook</option>
-      <option>Flixster</option>
-      <option>Friendster</option>
-      <option>hi5</option>
-      <option>imeem</option>
-      <option>Last.fm</option>
-      <option>LinkedIn</option>
-      <option>LiveJournal</option>
-      <option>MySpace</option>
-      <option>Orkut</option>
-      <option>Twitter</option>
-      <option>Other</option>
-    </select>
-    <div class="details hide" />
+  <li id="op" class="basic item">
+    <div class="itemcontent">
+      <input type="text" name="peronlinepresence" class="text span-11" />
+      <select class="valigntop">
+        <option>Bebo</option>
+        <option>DeviantART</option>
+        <option>Facebook</option>
+        <option>Flixster</option>
+        <option>Friendster</option>
+        <option>hi5</option>
+        <option>imeem</option>
+        <option>Last.fm</option>
+        <option>LinkedIn</option>
+        <option>LiveJournal</option>
+        <option>MySpace</option>
+        <option>Orkut</option>
+        <option>Twitter</option>
+        <option>Other</option>
+      </select>
+    </div>
   </li>
-  <li id="so" class="detailed item">
-    <b>Name:</b>
-    <input type="text" class="text" name="soname" />
-    <b class="push-light-img">by:</b>
-    <input type="text" class="text" name="soby" />
+  <li id="so" class="basic item">
+    <div class="itemcontent">
+      <b>Name:</b>
+      <input type="text" class="text" name="soname" />
+      <br />
+      <b class="push-light-img">by:</b>
+      <input type="text" class="text" name="soby" />
+    </div>
   </li>
 </ul>
 </div>
