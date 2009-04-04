@@ -1,10 +1,10 @@
 $(function(){
 /* Appending/etc */
-//add the image, details, tags, copy, and remove links
+//add the image, details, tags, copy, and delete links
 // add link.... add tags, add comments, add ???
-var dragdropimg = "<span class='ui-icon-dragdrop ui-icon ui-icon-arrowthick-2-n-s'></span>",
- detailslink = " <a class='detailslink' href='#'>details</a>",
- cprmlinks = " <a class='copy' href='#'>copy</a> <a class='remove' href='#'>remove</a>",
+var dragdropimg = "<span class='ui-icon ui-icon-border ui-icon-dragdrop'></span>",
+ detailslink = " <div><div class='clearfix'></div><span class='ui-icon ui-icon-border ui-icon-details detailslink'></span><a class='detailslink' href='#'>details</a></div>",
+ cprmlinks = " <a class='copy' href='#'>copy</a> <a class='delete' href='#'>delete</a>",
  tgcmdiv = "<div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
 $('#types li.item').each(function(){
   $(this).prepend(dragdropimg);
@@ -15,7 +15,7 @@ $('#types li:not(.detailed)').each(function(){
 $('#types .details').each(function(){
   $(this).before(detailslink+cprmlinks).append(tgcmdiv);
 });
-$('#list_info .details').before(detailslink).append(tgcmdiv);
+$('#list_info .details').append(tgcmdiv);
 $('.movetoend').appendTo($('.movetoend').parent());
 //ratings
 var ratings = 
@@ -44,13 +44,13 @@ $('#show_details').click(function(){
     $('.details').sdr();
   }
 });
-//show/hide details
+//show/hide all details
 $('.show_hide_details').toggle(function(){
   $(this).html('hide all details');
-  $('.details:not(#list_info .details)').sdr();
+  $('.details:not(#list_info .details,#types .details)').sdr();
 },function(){
   $(this).html('show all details');
-  $('.details:not(#list_info .details)').sua();
+  $('.details:not(#list_info .details,#types .details)').sua();
 });
 
 //tags and comments
@@ -76,7 +76,7 @@ tagCommentClick('.tag','.tags','#tagged');
 tagCommentClick('.comment','.comments','#commented');
 //toggles for details section (books/movies/etc)
 $('.detailslink').click(function(){
-  var details = $(this).parent().find('.details');
+  var details = $(this).parents('.item').find('.details');
   if(details.hasClass('hide')){
     details.sdr();
   }else{
@@ -163,9 +163,9 @@ $('.addone').click(function(){
     .appendTo(next).fadeDate();
   return false;
 });
-//remove click events
-$('.remove').click(function(){
-  var parent = $(this).parent(), clone = $("#removeitem").clone(), 
+//delete click events
+$('.delete').click(function(){
+  var parent = $(this).parent(), clone = $("#deleteitem").clone(), 
   opts = {autoOpen:false,draggable:false,minHeight:70,modal:true,resizable:false,dialogClass:"dialog-error",
     buttons:{"Delete":function(){
       parent.fadeOut(function(){
@@ -203,7 +203,7 @@ $('select.itemOptions').change(function(){
 });
 
 //sortable
-$('#items').sortable({'axis':'y','cursor':'pointer','handle':'.ui-icon-arrowthick-2-n-s'});
+$('#items').sortable({'axis':'y','cursor':'pointer','handle':'.ui-icon-dragdrop'});
 
 //star ratings
 //$('.rating').rating({maxvalue:5, increment:.5});

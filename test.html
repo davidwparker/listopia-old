@@ -104,7 +104,7 @@
     <textarea cols="16" rows="5" name="comments" class="tall-light-7 span-14"></textarea>
   </div>
 </div>
-<div id="removeitem" title="Remove?" class="hide">Do you permanently want to delete this item?</div>
+<div id="deleteitem" title="Delete?" class="hide">Do you permanently want to delete this item?</div>
 <ul id="types" class="hide">
   <li id="tt" class="item">
     <input type="text" class="text" name="text" />
@@ -184,7 +184,22 @@
     <div class="details hide">
       <div>
         <b>Do you own this movie?</b>
-        <input type="checkbox" name="movieown" class="valigntop" />
+        <input type="checkbox" name="movieown" class="revealnext valigntop" />
+          <div class="hide">
+          <a class="addone push-light-4" href="#">add type</a>
+          <ul class="tvowntype">
+            <li>
+              <b class="prepend-light-1">Type:</b>
+              <select>
+                <option value='dv'>DVD</option>
+                <option value='di'>Digital</option>
+                <option value='br'>Blu-Ray</option>
+                <option value='vh'>VHS</option>
+                <option value='ot'>Other</option>
+              </select>
+            </li>
+          </ul>
+        </div>
       </div>
       <div>
         <b>Have you seen this movie?</b>
@@ -303,7 +318,7 @@
     <input type="text" name="person" class="text" />
     <div class="details hide">
       <div>
-        <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add phone</a>
+        <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add</a>
         <ul class="phone">
           <li>
             <input type="text" name="perphone" class="text span-8" />
@@ -319,7 +334,7 @@
         </ul>
       </div>
       <div>
-        <span class="append-light-1"><b>Email</b></span><a href="#" class="addone">add email</a>
+        <span class="append-light-1"><b>Email</b></span><a href="#" class="addone">add</a>
         <ul class="email">
           <li>
             <input type="text" name="peremail" class="text span-8" />
@@ -332,7 +347,7 @@
         </ul>
       </div>
       <div>
-        <span class="append-light-1"><b>Address</b></span><a href="#" class="addone">add address</a>
+        <span class="append-light-1"><b>Address</b></span><a href="#" class="addone">add</a>
         <ul class="address">
           <li>
             <textarea cols="16" rows="5" name="peraddress" class="span-8 tall-4"></textarea>
@@ -349,7 +364,7 @@
         <input type="text" name="perbirthdate" class="text datepicker span-3" />
       </div>
       <div>
-        <span class="append-light-1"><b>Instant Messenger</b></span><a href="#" class="addone">add instant messenger</a>
+        <span class="append-light-1"><b>Instant Messenger</b></span><a href="#" class="addone">add</a>
         <ul class="instantmess">
           <li>
             <input type="text" name="perinstantmess" class="text span-8" />
@@ -368,7 +383,7 @@
         </ul>
       </div>
       <div>
-        <span class="append-light-1"><b>Online Presence</b></span><a href="#" class="addone">add online presence</a>
+        <span class="append-light-1"><b>Online Presence</b></span><a href="#" class="addone">add</a>
         <ul class="onlinepresence">
           <li>
             <input type="text" name="peronlinepresence" class="text span-11" />
@@ -401,7 +416,8 @@
         <b>Do you have a subscription to this magazine?</b>
         <input type="checkbox" name="magsub" class="valigntop" />
       </div>
-      <div>        <a class="addone push-light-4" href="#">add issue</a>
+      <div>
+        <a class="addone push-light-4" href="#">add issue</a>
         <ul class="magissue">
           <li>            <b>Number:</b>
             <input type="text" name="magnumber" class="span-3" />
@@ -418,7 +434,8 @@
         <b>Do you have a subscription to this comic book?</b>
         <input type="checkbox" name="comicsub" class="valigntop" />
       </div>
-      <div>        <a class="addone push-light-4" href="#">add issue</a>
+      <div>
+        <a class="addone push-light-4" href="#">add issue</a>
         <ul class="comicissue">
           <li>            <b>Number:</b>
             <input type="text" name="comicnumber" class="text span-3" />
