@@ -3,17 +3,21 @@ $(function(){
 //add the image, details, tags, copy, and delete links
 // add link.... add tags, add comments, add ???
 var dragdropimg = "<span class='ui-icon ui-icon-border ui-icon-dragdrop'></span>",
- detailslink = " <div><div class='clearfix'></div><span class='ui-icon ui-icon-border ui-icon-details detailslink'></span><a class='detailslink' href='#'>details</a></div>",
+ detailslink = " <div class='fr itemtoolbar'><span class='ui-icon ui-icon-border ui-icon-details detailslink'></span><a class='detailslink' href='#'>details</a></div>",
  cprmlinks = " <a class='copy' href='#'>copy</a> <a class='delete' href='#'>delete</a>",
  tgcmdiv = "<div class='tgcmdiv'><a class='tag' href='#'>tags</a> <a class='comment' href='#'>comment</a></div>";
 $('#types li.item').each(function(){
   $(this).prepend(dragdropimg);
 });
-$('#types li:not(.detailed)').each(function(){
+$('#types .basic').each(function(){
+  var cprmlinks2 = "<div class='fr'>" + cprmlinks + "</div>";
+  $(this).prepend(cprmlinks2);
+});
+$('#types .details ul li').each(function(){
   $(this).append(cprmlinks);
 });
 $('#types .details').each(function(){
-  $(this).before(detailslink+cprmlinks).append(tgcmdiv);
+  $(this).prev().before(detailslink).parent().find('a.detailslink').after(cprmlinks).end().append(tgcmdiv);
 });
 $('#list_info .details').append(tgcmdiv);
 $('.movetoend').appendTo($('.movetoend').parent());
@@ -74,31 +78,6 @@ function existsAndHidden(o){
 }
 tagCommentClick('.tag','.tags','#tagged');
 tagCommentClick('.comment','.comments','#commented');
-//toggles for details section (books/movies/etc)
-$('.detailslink').click(function(){
-  var details = $(this).parents('.item').find('.details');
-  if(details.hasClass('hide')){
-    details.sdr();
-  }else{
-    details.sua();
-  }
-  return false;
-});
-//reveal next/end when when checkbox checked
-$('.revealnext').click(function(){
-  if($(this).attr('checked') === true){
-    $(this).next().sdr();
-  }else{
-    $(this).next().sua().children().val('');
-  }
-});
-$('.revealend').click(function(){
-  if($(this).attr('checked') === true){
-    $(this).parent().find('.movetoend').sdr();
-  }else{
-    $(this).parent().find('.movetoend').sua().children().val('');
-  }
-});
 //add button click events for which to clone
 $('.addButton').click(function(){
   var selected=$(this).parent().find('select option:selected').val(), toAdd;
@@ -140,20 +119,20 @@ $('.addButton').click(function(){
 });
 //copy click events
 $('.copy').click(function(){
-  var parent = $(this).parent(), selects = [];
-  parent.find('select :selected').each(function(i){
+  var p = $(this).parents('li:first'), selects = [];
+  p.find('select :selected').each(function(i){
     selects[i] = $(this).val();
   }).end()
   //hack fix due to jquery bug not cloning textarea value in FF
   .find('textarea').each(function(){
     $(this).text($(this).val());
   });
-  var clone = parent.clone(true).css({'display':''}).addHideNoIds().end()
+  var clone = p.clone(true).css({'display':''}).addHideNoIds().end()
     .find('select').each(function(i){
       $(this).val(selects[i]);
     }).end();
   resizer(clone);
-  clone.insertAfter(parent).fadeDate();
+  clone.insertAfter(p).fadeDate();
   return false;
 });
 //addone click events
@@ -165,10 +144,10 @@ $('.addone').click(function(){
 });
 //delete click events
 $('.delete').click(function(){
-  var parent = $(this).parent(), clone = $("#deleteitem").clone(), 
+  var p = $(this).parents('li:first'), clone = $("#deleteitem").clone(), 
   opts = {autoOpen:false,draggable:false,minHeight:70,modal:true,resizable:false,dialogClass:"dialog-error",
     buttons:{"Delete":function(){
-      parent.fadeOut(function(){
+      p.fadeOut(function(){
         $(this).remove();
         if($('#items li').length === 0 ){
           $('#items').append("<li class='item'>You don't have any items on your list yet... why don't you add one? :)</li>");
@@ -181,6 +160,31 @@ $('.delete').click(function(){
   clone.dialog(opts);
   clone.dialog('open');
   return false;
+});
+//toggles for details section (books/movies/etc)
+$('.detailslink').click(function(){
+  var details = $(this).parents('.item').find('.details');
+  if(details.hasClass('hide')){
+    details.sdr();
+  }else{
+    details.sua();
+  }
+  return false;
+});
+//reveal next/end when when checkbox checked
+$('.revealnext').click(function(){
+  if($(this).attr('checked') === true){
+    $(this).next().sdr();
+  }else{
+    $(this).next().sua().children().val('');
+  }
+});
+$('.revealend').click(function(){
+  if($(this).attr('checked') === true){
+    $(this).parent().find('.movetoend').sdr();
+  }else{
+    $(this).parent().find('.movetoend').sua().children().val('');
+  }
 });
 
 /* focus/blur events */

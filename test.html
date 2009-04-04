@@ -17,6 +17,7 @@
       <li><a href="#">login</a></li>
       <li><a href="#">register</a></li>
       <li><a href="#">etc</a></li>
+      <li><a href="divblocktest.html">divs</a></li>
     </ul>
     <ul id="title">
       <li><h1>Listopia</h1></li>
@@ -106,32 +107,36 @@
 </div>
 <div id="deleteitem" title="Delete?" class="hide">Do you permanently want to delete this item?</div>
 <ul id="types" class="hide">
-  <li id="tt" class="item">
-    <input type="text" class="text" name="text" />
+  <li id="tt" class="item basic">
+    <div>
+      <input type="text" class="text" name="text" />
+    </div>
   </li>
-  <li id="tat" class="item">
+  <li id="tat" class="item basic">
     <textarea cols="16" rows="5" name="textarea" class="tall-6"></textarea>
   </li>
-  <li id="ttat" class="item">
+  <li id="ttat" class="item basic">
     <input type="text" name="texttextareatext" class="text" /><br />
     <textarea cols="16" rows="5" name="texttextarea" class="tall-6 push-light-img"></textarea>
   </li>
-  <li id="tdt" class="item">
+  <li id="tdt" class="item basic">
     <input type="text" name="textwdatedate" class="text datepicker span-3" />
     <input type="text" name="textwdatetext" class="text" />
   </li>
-  <li id="tadt" class="item">
+  <li id="tadt" class="item basic">
     <input type="text" name="textareawdatedate" class="text datepicker span-3" /><br />
     <textarea cols="16" rows="5" name="textareawdatearea" class="tall-6 push-light-img"></textarea>
   </li>
-  <li id="ttadt" class="item">
+  <li id="ttadt" class="item basic">
     <input type="text" name="texttextareadatedate" class="text datepicker span-3" />
     <input type="text" name="texttextareadatetext" class="text" /><br />
     <textarea cols="16" rows="5" name="texttextareadatearea" class="tall-6 push-light-img"></textarea>
   </li>
-  <li id="todo" class="detailed item">
-    <b>What:</b>
-    <input type="text" name="todo" class="text" />
+  <li id="todo" class="detailed item clearfix">
+    <div>
+      <b>What:</b>
+      <input type="text" name="todo" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Due Date:</b>
@@ -152,8 +157,10 @@
     </div>
   </li>
   <li id="bk" class="detailed item">
-    <b>Title or ISBN:</b>
-    <input type="text" name="book" class="text" />
+    <div>
+      <b>Title or ISBN:</b>
+      <input type="text" name="book" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Do you own this book?</b>
@@ -179,8 +186,10 @@
     </div>
   </li>
   <li id="mv" class="detailed item">
-    <b>Title or ISBN:</b>
-    <input type="text" name="movie" class="text" />
+    <div>
+      <b>Title or ISBN:</b>
+      <input type="text" name="movie" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Do you own this movie?</b>
@@ -219,8 +228,10 @@
     </div>
   </li>
   <li id="tv" class="detailed item">
-    <b>Title or ISBN:</b>
-    <input type="text" name="tv" class="text" />
+    <div>
+      <b>Title or ISBN:</b>
+      <input type="text" name="tv" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Complete Series?</b>
@@ -284,8 +295,10 @@
     </div>
   </li>
   <li id="tvi" class="detailed item">
-    <b>Title:</b>
-    <input type="text" name="tvi" class="text" />
+    <div>
+      <b>Title:</b>
+      <input type="text" name="tvi" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Season:</b>
@@ -314,8 +327,10 @@
     </div>
   </li>
   <li id="per" class="detailed item">
-    <b>Name:</b>
-    <input type="text" name="person" class="text" />
+    <div>
+      <b>Name:</b>
+      <input type="text" name="person" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <span class="append-light-1"><b>Phone</b></span><a href="#" class="addone">add</a>
@@ -409,8 +424,10 @@
     </div>
   </li>
   <li id="mg" class="detailed item">
-    <b>Title:</b>
-    <input type="text" name="mag" class="text" />
+    <div>
+      <b>Title:</b>
+      <input type="text" name="mag" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Do you have a subscription to this magazine?</b>
@@ -420,15 +437,17 @@
         <a class="addone push-light-4" href="#">add issue</a>
         <ul class="magissue">
           <li>            <b>Number:</b>
-            <input type="text" name="magnumber" class="span-3" />
+            <input type="text" name="magnumber" class="text span-3" />
             <b class="prepend-light-1">Rating:</b>            <select class="rating"><option value=''></option></select>
           </li>
         </ul>
       </div>    </div>
   </li>
   <li id="co" class="detailed item">
-    <b>Title:</b>
-    <input type="text" name="comic" class="text" />
+    <div>
+      <b>Title:</b>
+      <input type="text" name="comic" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Do you have a subscription to this comic book?</b>
@@ -455,8 +474,10 @@
       </div>    </div>
   </li>
   <li id="cd" class="detailed item">
-    <b>Name or ISBN:</b>
-    <input type="text" name="cd" class="text" />
+    <div>
+      <b>Name or ISBN:</b>
+      <input type="text" name="cd" class="text" />
+    </div>
     <div class="details hide">
       <div>
         <b>Do you own this cd?</b>
@@ -468,24 +489,27 @@
       </div>
     </div>
   </li>
-  <li id="qa" class="detailed item">
-    <b class="valigntop">Question:</b>
-    <textarea cols="16" rows="5" name="qaquestion" class="span-10 tall-light-7"></textarea>
-    <br />
-    <b class="push-light-img valigntop">Answer:</b>
-    <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
-    <div class="details hide" />
+  <li id="qa" class="item">
+    <div>
+      <b class="valigntop">Question:</b>
+      <textarea cols="16" rows="5" name="qaquestion" class="span-10 tall-light-7"></textarea>
+      <br />
+      <b class="push-light-img valigntop">Answer:</b>
+      <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
+    </div>
   </li>
   <li id="re" class="detailed item">
-    <b>Name:</b>
-    <input type="text" name="recipe" class="text" />
+    <div>
+      <b>Name:</b>
+      <input type="text" name="recipe" class="text" />
+    </div>
     <div class="details hide">
-      <span class="append-light-1"><b>Ingredients</b></span><a href="#" class="addone">add ingredient</a>
+      <span class="append-light-1"><b>Ingredients</b></span><a href="#" class="addone">add</a>
       <ul class="recipeing">
         <li>          <input type="text" name="recipeing" class="text" />
         </li>
       </ul>
-      <span class="append-light-1"><b>Preparation Steps</b></span><a href="#" class="addone">add preparation step</a>
+      <span class="append-light-1"><b>Preparation Steps</b></span><a href="#" class="addone">add</a>
       <ul class="recipestep">
         <li>          <textarea cols="16" rows="5" name="qaanswer" class="span-10 tall-light-7"></textarea>
         </li>
@@ -516,14 +540,12 @@
     </select>
     <div class="details hide" />
   </li>
-  <li id="so" class="item">
+  <li id="so" class="detailed item">
     <b>Name:</b>
     <input type="text" class="text" name="soname" />
-    <br />
     <b class="push-light-img">by:</b>
     <input type="text" class="text" name="soby" />
   </li>
-
 </ul>
 </div>
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
